@@ -3,4 +3,4 @@ project(ex3)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(ex3 main.cpp parser.h Parser.cpp)
+add_executable(ex3 main.cpp parser.h Parser.cpp Singleton.h Var.h)
