@@ -135,10 +135,10 @@ vector<string> lexer(string file_name) {
 
     } // end of while - reading line by line from file
 
-    /*
+
     for (int j = 0; j < tokens.size(); j++) {
         cout << tokens[j] << endl;
-    }*/
+    }
     return tokens;
 
 

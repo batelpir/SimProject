@@ -4,10 +4,12 @@
 
 #ifndef EX3_COMMAND_H
 #define EX3_COMMAND_H
-
+#include <string>
+#include <vector>
+using namespace std;
 
 class Command {
-
+virtual execute(vector<string>, int index);
 };
 
 
