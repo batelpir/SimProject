@@ -17,11 +17,11 @@ Singleton* Singleton::getInstance() {
 Singleton::Singleton()
 {}
 
-void Singleton::insertToSymbolTable(string s, Var v) {
+void Singleton::insertToSymbolTable(string s, Var *v) {
   this->symbol_table[s] = v;
 }
 
-void Singleton::insertToSimTable(string s, Var v) {
+void Singleton::insertToSimTable(string s, Var *v) {
   this->sim_table[s] = v;
 }
 
@@ -29,11 +29,11 @@ void Singleton::insertToCommandTable(string s, Command *c) {
   this->command_table[s] = c;
 }
 
-Var Singleton::getfromSymbolTable(string key) {
+Var* Singleton::getfromSymbolTable(string key) {
   return this->symbol_table[key];
 }
 
-Var Singleton::getfromSimTable(string key) {
+Var* Singleton::getfromSimTable(string key) {
   return this ->sim_table[key];
 }
 
