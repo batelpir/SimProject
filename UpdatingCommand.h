@@ -8,6 +8,7 @@
 #include <regex>
 class UpdatingCommand: public Command {
   string expression;
+  string var_name;
   vector<string> tokens;
 
  public:

@@ -8,15 +8,15 @@
 using namespace std;
 // like a struct of data about the variable.
 class Var {
- private:
-  int value;
+  double value;
   string simName;
+ public:
   // Setter
-  void setValue(int v) {
+  void setValue(double v) {
     this->value = v;
   }
   // Getter
-  int getValue() {
+  double getValue() {
     return this->value;
   }
   // Setter
