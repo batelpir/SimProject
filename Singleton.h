@@ -12,38 +12,22 @@
 using namespace std;
 class Singleton {
   static Singleton *instance;
-  map<string, Var> symbolTable;
-  map<string, Var> simTable;
-  unordered_map<string,Command> commandTable;
+  map<string, Var> symbol_table;
+  map<string, Var> sim_table;
+  unordered_map<string,Command*> command_table;
 
   // Private constructor so that no objects can be created.
-  Singleton() {}
+  Singleton();
 
  public:
-  static Singleton *getInstance() {
-    if (!instance)
-      instance = new Singleton;
-    return instance;
-  }
-  void insertToSymbolTable(string s, Var v) {
-    this->symbolTable[s] = v;
-  }
-  void insertToCommandTable(string s, Command c) {
-    this->commandTable[s] = c;
-  }
-  void insertToSimTable(string s, Var v) {
-    this->simTable[s] = v;
-  }
-
-  Var getfromSymbolTable(string key) {
-    return this->symbolTable[key];
-  }
-  Var getfromSimTable(string key) {
-    return this -> simTable[key];
-  }
-  Command getfromCommandTable(string key) {
-    return this -> commandTable[key];
-  }
+  // Static access method.
+  static Singleton* getInstance();
+  void insertToSymbolTable(string s, Var v);
+  void insertToCommandTable(string s, Command *c);
+  void insertToSimTable(string s, Var v);
+  Var getfromSymbolTable(string key);
+  Var getfromSimTable(string key);
+  Command* getfromCommandTable(string key);
 };
 
 #endif //EX3__SINGLETON_H_

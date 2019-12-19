@@ -4,6 +4,7 @@
 #include <fstream>
 #include <vector>
 #include <regex>
+#include "Sleep.h"
 
 using namespace std;
 
@@ -273,6 +274,11 @@ void lexer(string file_name) {
 
 int main(int argc, char *argv[]) {
     //lexer(argv[1]);
-    lexer("flyCopy.txt");
+    vector<string> tokens = lexer("flyCopy.txt");
+    // machinim mapot :)
+    cout<<"hi"<< endl;
+    Command* test = new Sleep();
+    test->execute(tokens, 0);
+    cout<<"hihi"<< endl;
     return 0;
 }

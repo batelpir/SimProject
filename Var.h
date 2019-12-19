@@ -6,6 +6,7 @@
 #define EX3__VAR_H_
 #include <string>
 using namespace std;
+// like a struct of data about the variable.
 class Var {
  private:
   int value;

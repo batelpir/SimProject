@@ -9,7 +9,8 @@
 using namespace std;
 
 class Command {
-virtual execute(vector<string>, int index);
+ public:
+  virtual int execute(int curr_index) = 0;
 };
 
 

@@ -4,13 +4,18 @@
 
 #ifndef EX3_PRINT_H
 #define EX3_PRINT_H
-
+#include "Command.h"
 #include <iostream>
 
 using namespace std;
 class Print : public Command {
-public:
-    virtual int execute(vector<string> tokens, int curr_index);
+  vector<string> tokens;
+
+  public:
+    Print(vector<string> tokens_input);
+  // need to delete execute.
+    virtual int execute(int curr_index);
+
 };
 
 

@@ -6,13 +6,14 @@
 #define EX3__PARSER_H_
 #include <string>
 #include <vector>
+#include "Singleton.h"
 using namespace std;
 class Parser {
  private:
   vector<string> tokens;
  public:
-  Parser(vector<string> tokensInput) {
-    tokens = tokensInput;
+  Parser(vector<string> tokens_input) {
+    tokens = tokens_input;
   }
   void parser();
 
