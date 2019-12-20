@@ -11,11 +11,10 @@ using namespace std;
 class Print : public Command {
   vector<string> tokens;
 
-  public:
+public:
     Print(vector<string> tokens_input);
   // need to delete execute.
     virtual int execute(int curr_index);
-
 };
 
 
