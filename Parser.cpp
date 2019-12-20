@@ -1,13 +1,21 @@
 //
 // Created by batel on 18/12/2019.
 //
-#include "parser.h"
+#include "Parser.h"
+
+Parser::Parser(vector<string> tokens_input) {
+tokens = tokens_input;
+}
 
 void Parser::parser() {
-  Singleton* singleton = Singleton::getInstance();
-  for (string& str : this->tokens) {
-    if(str == "openDataServer") {
-
-    }
+  Singleton* singleton = Singleton::getInstance(tokens);
+  Command* comm;
+  int index = 0;
+  while(index < tokens.size()) {
+      comm = singleton->getfromCommandTable(tokens[index]);
+      if (comm != NULL) {
+          index = comm->execute(index);
+      }
   }
+
 }

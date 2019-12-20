@@ -12,9 +12,7 @@ class Parser {
  private:
   vector<string> tokens;
  public:
-  Parser(vector<string> tokens_input) {
-    tokens = tokens_input;
-  }
+  Parser(vector<string> tokens_input);
   void parser();
 
 };
