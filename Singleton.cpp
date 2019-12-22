@@ -100,3 +100,6 @@ Var* Singleton::getfromSimTable(string key) {
 Command* Singleton::getfromCommandTable(string key) {
   return this ->command_table[key];
 }
+map<string, Var*> Singleton::getSimTable() {
+  return sim_table;
+}

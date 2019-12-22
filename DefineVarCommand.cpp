@@ -9,19 +9,14 @@
     this->tokens = tokens_input;
 }*/
 int DefineVarCommand :: execute(vector<string> tokens, int curr_index) {
-    // if it's new var
-    Singleton* instance = Singleton::getInstance();
-    if (tokens[curr_index] == "var") {
-        Var *var = new Var();
-        var->setArrow(tokens[curr_index + 2]);
-        var->setSimName(tokens[curr_index + 4]);
-        instance->insertToSymbolTable(tokens[curr_index], var);
-        instance->insertToSimTable(tokens[curr_index + 4], var);
-        return curr_index + 5;
-    } else {
-        // it means it's not a new var,
-        // here supposed to be the code from ex 1
-        return curr_index + 3;
-    }
+  // if it's new var
+  Singleton* instance = Singleton::getInstance();
+  Var *var = new Var();
+
+  var->setArrow(tokens[curr_index + 2]);
+  var->setSimName(tokens[curr_index + 4]);
+  instance->insertToSymbolTable(tokens[curr_index + 1], var);
+  instance->insertToSimTable(tokens[curr_index + 4], var);
+  return curr_index + 5;
 
 }

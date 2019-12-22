@@ -37,6 +37,7 @@ class Singleton {
   Var* getfromSymbolTable(string key);
   Var* getfromSimTable(string key);
   Command* getfromCommandTable(string key);
+  map<string, Var*> getSimTable();
 };
 
 #endif //EX3__SINGLETON_H_

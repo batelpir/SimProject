@@ -3,9 +3,6 @@
 //
 // Created by batel on 19/12/2019.
 //
-/*UpdatingCommand::UpdatingCommand(vector<string> tokens_input) {
-  this->tokens = tokens_input;
-}*/
 
 int UpdatingCommand::execute(vector<string> tokens, int index) {
   expression_string = /*tokens[index + 1]*/"(h0 - 6) /lol ";
@@ -47,7 +44,6 @@ int UpdatingCommand::execute(vector<string> tokens, int index) {
         // mean that we finished to build the name of var and now it is another char.
         // (attention: number will not enter to this case but it will never be the first char after a variable name.)
         if(!variable.empty() && !regex_match(s ,is_part_of_var_name)) {
-          // מטפלים בשם משתנה ואז מוחקים.
           Var* variable_data = singleton->getfromSymbolTable(variable);
           double variable_value = variable_data->getValue();
           string value_string = to_string(variable_value);
@@ -63,28 +59,6 @@ int UpdatingCommand::execute(vector<string> tokens, int index) {
         }
       }
     }
-    /*
-    // this case mean that the char is a part of a variable name.
-    if((!variable.empty()) &&regex_match(s ,is_part_of_var_name)) {
-      variable += s; // add the char to variable name.
-    }
-    // mean that we finished to build the name of var and now it is another char.
-    // (attention: number will not enter to this case but it will never be the first char after a variable name.)
-    if(!variable.empty() && !regex_match(s ,is_part_of_var_name)) {
-      // מטפלים בשם משתנה ואז מוחקים.
-      Var* variable_data = singleton->getfromSymbolTable(variable);
-      double variable_value = variable_data->getValue();
-      string value_string = to_string(variable_value);
-      try {
-        inter->setVariables(variable + "=" + value_string);
-        delete inter;
-      } catch (const char* e) {
-        //if (inter != nullptr) {
-          delete inter;
-        //}
-      }
-      variable = ""; // delete the variable name that we finish to deal with.
-    } */
   }
   // remove the spaces from the expression_string string.
   expression_string.erase(std::remove(expression_string.begin(), expression_string.end(), ' '), expression_string.end());
