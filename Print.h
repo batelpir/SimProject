@@ -9,10 +9,8 @@
 
 using namespace std;
 class Print : public Command {
-  //vector<string> tokens;
 
 public:
-    //Print(vector<string> tokens_input);
   // need to delete execute.
     virtual int execute(vector<string> tokens, int curr_index);
 };

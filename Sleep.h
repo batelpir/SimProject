@@ -10,12 +10,7 @@
 #include "Command.h"
 
 class Sleep : public Command {
- private:
-  //vector<string> tokens;
-
-
   public:
-    //Sleep(vector<string> tokens_input);
     // need to delete the vitual execute.
     virtual int execute(vector<string> tokens, int curr_index);
 

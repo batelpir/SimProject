@@ -4,10 +4,14 @@
 
 #include "Print.h"
 
-/*Print::Print(vector<string> tokens_input) {
-  this->tokens = tokens_input;
-}*/
 int Print :: execute(vector<string> tokens, int curr_index) {
-    cout <<tokens[curr_index + 1]<<endl;
+    // only if brackets contain double quote
+    if (tokens[curr_index + 1].find("\"")) {
+        cout <<tokens[curr_index + 1]<<endl;
+    } else {
+        // call shunting yard and check if it's an expression or not
+        //int res = shunting_yard;
+        //cout <<res<<endl;
+    }
     return curr_index + 2;
 }

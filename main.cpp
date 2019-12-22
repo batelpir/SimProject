@@ -7,7 +7,11 @@
 using namespace std;
 int main(int argc, char *argv[]) {
     vector<string> tokens;
-    //lexer(argv[1]);
+    if  (argc == 2) {
+        //lexer(argv[1]);
+    } else {
+        cout << "File name is not supplied";
+    }
     tokens = Lexer::lexer("flyCopy.txt");
     new Parser(tokens);
     return 0;
