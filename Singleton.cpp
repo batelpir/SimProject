@@ -6,7 +6,7 @@
 // Null, because instance will be initialized on demand.
 Singleton* Singleton::instance = 0;
 
-Singleton :: Singleton(vector<string> tokens) {
+Singleton :: Singleton(/*vector<string> tokens*/) {
     Var* var_ptr = nullptr;
     // insert to sim table
     symbol_table.insert({"/instrumentation/airspeed-indicator/indicated-speed-kt", nullptr});
@@ -49,16 +49,16 @@ Singleton :: Singleton(vector<string> tokens) {
     // insert to command table
     //command_table.insert({"openDataServer", new OpenServerCommand(tokens)});
     //command_table.insert({"connectControlClient", new connectClientCommand(tokens)});
-    command_table.insert({"var", new DefineVarCommand(tokens)});
-    command_table.insert({"Print", new Print(tokens)});
-    command_table.insert({"Sleep", new Sleep(tokens)});
+    command_table.insert({"var", new DefineVarCommand(/*tokens*/)});
+    command_table.insert({"Print", new Print(/*tokens*/)});
+    command_table.insert({"Sleep", new Sleep(/*tokens*/)});
     // if and while conditions need to be added here
 }
 
-Singleton* Singleton::getInstance(vector<string> tokens) {
+Singleton* Singleton::getInstance(/*vector<string> tokens*/) {
   if (instance == 0)
   {
-    instance = new Singleton(tokens);
+    instance = new Singleton(/*tokens*/);
   }
 
   return instance;

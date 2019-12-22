@@ -19,18 +19,18 @@
 using namespace std;
 class Singleton {
   static Singleton *instance;
-  vector<string> tokens;
+  //vector<string> tokens;
   map<string, Var*> symbol_table;
   map<string, Var*> sim_table;
   unordered_map<string,Command*> command_table;
 
   // Private constructor so that no objects can be created.
-  Singleton(vector<string> tokens);
+  Singleton(/*vector<string> tokens*/);
 
  public:
   // Static access method.
-  static Singleton* getInstance(vector<string> tokens);
-  map<string, Var*> getSymbolTable();
+  static Singleton* getInstance(/*vector<string> tokens*/);
+  //map<string, Var*> getSymbolTable();
   void insertToSymbolTable(string s, Var *v);
   void insertToCommandTable(string s, Command *c);
   void insertToSimTable(string s, Var *v);

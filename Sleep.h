@@ -11,13 +11,13 @@
 
 class Sleep : public Command {
  private:
-  vector<string> tokens;
+  //vector<string> tokens;
 
 
   public:
-    Sleep(vector<string> tokens_input);
-  // need to delete the vitual execute.
-    virtual int execute(int curr_index);
+    //Sleep(vector<string> tokens_input);
+    // need to delete the vitual execute.
+    virtual int execute(vector<string> tokens, int curr_index);
 
 };
 #endif //EX3_SLEEP_H

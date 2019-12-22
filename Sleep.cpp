@@ -3,11 +3,11 @@
 //
 
 #include "Sleep.h"
-Sleep::Sleep(vector<string> tokens_input) {
+/*Sleep::Sleep(vector<string> tokens_input) {
   this->tokens = tokens_input;
-}
+}*/
 
-int Sleep::execute(int curr_index) {
+int Sleep::execute(vector<string> tokens, int curr_index) {
   // convert string to number - atoi doesn't convert to float numbers
   stringstream sleep_string(tokens[curr_index + 1]);
   float sleep_time = 0;

@@ -4,13 +4,14 @@
 
 #ifndef EX3_DEFINEVARCOMMAND_H
 #define EX3_DEFINEVARCOMMAND_H
-
+#include "Command.h"
+#include "Var.h"
 
 class DefineVarCommand : public Command {
-    vector<string> tokens;
+    //vector<string> tokens;
 public:
-    DefineVarCommand(vector<string> tokens_input);
-    virtual int execute(int curr_index);
+    //DefineVarCommand(vector<string> tokens_input);
+    virtual int execute(vector<string> tokens, int curr_index);
 };
 
 

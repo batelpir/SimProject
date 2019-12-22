@@ -9,12 +9,12 @@
 
 using namespace std;
 class Print : public Command {
-  vector<string> tokens;
+  //vector<string> tokens;
 
 public:
-    Print(vector<string> tokens_input);
+    //Print(vector<string> tokens_input);
   // need to delete execute.
-    virtual int execute(int curr_index);
+    virtual int execute(vector<string> tokens, int curr_index);
 };
 
 

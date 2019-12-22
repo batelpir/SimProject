@@ -4,10 +4,10 @@
 
 #include "Print.h"
 
-Print::Print(vector<string> tokens_input) {
+/*Print::Print(vector<string> tokens_input) {
   this->tokens = tokens_input;
-}
-int Print :: execute(int curr_index) {
+}*/
+int Print :: execute(vector<string> tokens, int curr_index) {
     cout <<tokens[curr_index + 1]<<endl;
     return curr_index + 2;
 }
