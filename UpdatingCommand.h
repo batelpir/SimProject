@@ -5,14 +5,27 @@
 #ifndef EX3__UPDATINGCOMMAND_H_
 #define EX3__UPDATINGCOMMAND_H_
 #include "Command.h"
+#include "Singleton.h"
+#include "Plus.h"
+#include "Minus.h"
+#include "UPlus.h"
+#include "UMinus.h"
+#include "Div.h"
+#include "Mul.h"
+#include "Value.h"
+#include "BinaryOperator.h"
+#include "Variable.h"
+#include "UnaryOperator.h"
+#include "Interpreter.h"
 #include <regex>
+
 class UpdatingCommand: public Command {
-  string expression;
+  string expression_string;
   string var_name;
-  vector<string> tokens;
+  //vector<string> tokens;
 
  public:
-  UpdatingCommand(vector<string> tokens_input);
-  virtual int execute(int curr_index);
+  //UpdatingCommand(vector<string> tokens_input);
+  virtual int execute(vector<string> tokens, int curr_index);
 };
 #endif //EX3__UPDATINGCOMMAND_H_

@@ -53,6 +53,19 @@ Singleton :: Singleton(/*vector<string> tokens*/) {
     command_table.insert({"Print", new Print(/*tokens*/)});
     command_table.insert({"Sleep", new Sleep(/*tokens*/)});
     // if and while conditions need to be added here
+    ///////////////////////////////////////////////////
+    Var* var = new Var();
+    var->setValue(6);
+    symbol_table.insert({"var", var});
+
+    Var* var1 = new Var();
+    var1->setValue(5);
+    symbol_table.insert({"h0", var1});
+
+    Var* var2 = new Var();
+    var2->setValue(4);
+    symbol_table.insert({"lol", var2});
+    //////////////////////////////////////
 }
 
 Singleton* Singleton::getInstance(/*vector<string> tokens*/) {
