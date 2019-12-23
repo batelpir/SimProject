@@ -8,6 +8,12 @@ int UpdatingCommand::execute(vector<string> tokens, int index) {
   expression_string = /*tokens[index + 1]*/"(h0 - 6) /lol ";
   var_name = /*tokens[index - 1]*/"var";
   Singleton* singleton = Singleton::getInstance();
+  double val = Functions::shuntingYard(expression_string);
+  // update the var that in the map.
+  Var *var = singleton ->getfromSymbolTable(var_name);
+  var->setValue(val);
+  /*
+  Singleton* singleton = Singleton::getInstance();
 
 // check if expression_string is already a number
   string temp_expression = expression_string; // make a copy because its helps to check if expression_string is a negative number
@@ -71,5 +77,5 @@ int UpdatingCommand::execute(vector<string> tokens, int index) {
     //if (exp != nullptr) {
       delete exp;
     //}
-  }
+  }*/
 }

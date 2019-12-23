@@ -6,17 +6,7 @@
 #define EX3__UPDATINGCOMMAND_H_
 #include "Command.h"
 #include "Singleton.h"
-#include "Plus.h"
-#include "Minus.h"
-#include "UPlus.h"
-#include "UMinus.h"
-#include "Div.h"
-#include "Mul.h"
-#include "Value.h"
-#include "BinaryOperator.h"
-#include "Variable.h"
-#include "UnaryOperator.h"
-#include "Interpreter.h"
+#include "Functions.h"
 #include <regex>
 
 class UpdatingCommand: public Command {

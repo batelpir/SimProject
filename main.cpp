@@ -1,5 +1,4 @@
 // Headers files
-#include "Lexer.h"
 #include "Parser.h"
 #include "Command.h"
 #include "UpdatingCommand.h"
@@ -14,7 +13,9 @@ int main(int argc, char *argv[]) {
     } else {
         cout << "File name is not supplied\n";
     }
-    //tokens = Lexer::lexer("flyCopy.txt");;
+    // use parser with try & catch!!!
+
+    tokens = Functions::lexer("flyCopy.txt");
     /*
     Singleton* singleton = Singleton::getInstance();
     cout <<singleton->getfromSymbolTable("var")->getValue()<< endl;
@@ -22,7 +23,7 @@ int main(int argc, char *argv[]) {
     c->execute(tokens,3);
 
     cout <<singleton->getfromSymbolTable("var")->getValue()<< endl;
-    */
+*/
     //new Parser(tokens);
     return 0;
 }
