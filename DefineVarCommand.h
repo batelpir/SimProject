@@ -8,9 +8,7 @@
 #include "Var.h"
 
 class DefineVarCommand : public Command {
-    //vector<string> tokens;
 public:
-    //DefineVarCommand(vector<string> tokens_input);
     virtual int execute(vector<string> tokens, int curr_index);
 };
 

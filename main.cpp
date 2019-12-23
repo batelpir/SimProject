@@ -12,17 +12,17 @@ int main(int argc, char *argv[]) {
     if  (argc == 2) {
         //lexer(argv[1]);
     } else {
-        cout << "File name is not supplied";
+        cout << "File name is not supplied\n";
     }
-    tokens = Lexer::lexer("flyCopy.txt");
-    new Parser(tokens);
-    /////////////////////////////////////
+    //tokens = Lexer::lexer("flyCopy.txt");;
+    /*
     Singleton* singleton = Singleton::getInstance();
     cout <<singleton->getfromSymbolTable("var")->getValue()<< endl;
     Command* c = new UpdatingCommand();
     c->execute(tokens,3);
 
     cout <<singleton->getfromSymbolTable("var")->getValue()<< endl;
-    ////////////////////////////////////
+    */
+    //new Parser(tokens);
     return 0;
 }

@@ -17,7 +17,6 @@ class Lexer {
 public:
     static void splitLine(vector<string> *tokens, string line, int delim_pos) {
         // Note - we should pass stringstream by reference because stream doesnt have copy constructors
-        //vector<string> tokens;
         string item;
         smatch match;
         regex patt("[\\s]*(.+)$");
@@ -47,8 +46,20 @@ public:
                 if (match.str(1)[equal_pos - 1] != '-' && match.str(1)[equal_pos - 1] != '+') {
                     tokens->push_back("=");
                 }
-                // +2 is for skipping space
-                tokens->push_back(match.str(1).substr(equal_pos + 2));
+
+                if (line.substr(equal_pos + 1).find('(') != -1) {
+                    regex patt("[\\s]*\\((.*?)\\)");
+                    // there is '('
+                    if (std::regex_search(line, match, patt)) {
+                        tokens->push_back(match.str(1));
+                    }
+                } else {
+                    regex patt("[\\s]*(.*)");
+                    string line = line.substr(equal_pos + 1);
+                    if (std::regex_search(line, match, patt)) {
+                        tokens->push_back(match.str(1));
+                    }
+                };
             }
         }
         if (line[delim_pos] == ' ') {
@@ -63,13 +74,20 @@ public:
                         }
                         // split by commas
                         // get all the items without the last char which is ')'
+                        /*
                         stringstream line_stream(match.str(1).substr(paren_pos + 1));
                         while (getline(line_stream, item, ',')) {
                             if (item.find(')') != -1) {
                                 item = item.substr(0, item.size() - 1);
                             }
                             tokens->push_back(item);
-                        }
+                        }*/
+                        if (line.substr(equal_pos + 1).find('(') != -1) {
+                            regex patt("[\\s]*\\((.*?)\\)");
+                            // there is '('
+                            if (std::regex_search(line, match, patt)) {
+                                tokens->push_back(match.str(1));
+                            }
                     }
                 } else {
                     tokens->push_back(item);
