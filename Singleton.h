@@ -9,28 +9,34 @@
 #include <map>
 #include <unordered_map>
 #include <vector>
+#include <thread>
+#include <list>
 
 #include "Var.h"
 #include "Command.h"
+#include "OpenDataServerCommand.h"
+#include "ConnectControlClientCommand.h"
 #include "DefineVarCommand.h"
+#include "UpdatingCommand.h"
 #include "Print.h"
 #include "Sleep.h"
+
 
 using namespace std;
 class Singleton {
   static Singleton *instance;
-  //vector<string> tokens;
   map<string, Var*> symbol_table;
   map<string, Var*> sim_table;
   unordered_map<string,Command*> command_table;
+  vector<thread> threads;
+  list<string> stringsToSim;
 
   // Private constructor so that no objects can be created.
-  Singleton(/*vector<string> tokens*/);
+  Singleton();
 
  public:
   // Static access method.
-  static Singleton* getInstance(/*vector<string> tokens*/);
-  //map<string, Var*> getSymbolTable();
+  static Singleton* getInstance();
   void insertToSymbolTable(string s, Var *v);
   void insertToCommandTable(string s, Command *c);
   void insertToSimTable(string s, Var *v);
@@ -38,6 +44,11 @@ class Singleton {
   Var* getfromSimTable(string key);
   Command* getfromCommandTable(string key);
   map<string, Var*> getSimTable();
+  list<string> getStringsToSim();
+  void insertStringsToSim(string s);
+  //vector<thread> getThreads();
+
+    //void insertThread(thread t);
 };
 
 #endif //EX3__SINGLETON_H_

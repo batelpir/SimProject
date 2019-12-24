@@ -47,11 +47,13 @@ Singleton :: Singleton(/*vector<string> tokens*/) {
     symbol_table.insert({"/engines/engine/rpm", nullptr});
 
     // insert to command table
-    //command_table.insert({"openDataServer", new OpenServerCommand(tokens)});
-    //command_table.insert({"connectControlClient", new connectClientCommand(tokens)});
-    command_table.insert({"var", new DefineVarCommand(/*tokens*/)});
-    command_table.insert({"Print", new Print(/*tokens*/)});
-    command_table.insert({"Sleep", new Sleep(/*tokens*/)});
+    command_table.insert({"openDataServer", new OpenDataServerCommand()});
+    command_table.insert({"connectControlClient", new ConnectControlClientCommand()});
+    command_table.insert({"var", new DefineVarCommand()});
+    command_table.insert({"Print", new Print()});
+    command_table.insert({"Sleep", new Sleep()});
+    command_table.insert({"=", new UpdatingCommand()});
+
     // if and while conditions need to be added here
     ///////////////////////////////////////////////////
     Var* var = new Var();
@@ -100,6 +102,25 @@ Var* Singleton::getfromSimTable(string key) {
 Command* Singleton::getfromCommandTable(string key) {
   return this ->command_table[key];
 }
+
 map<string, Var*> Singleton::getSimTable() {
-  return sim_table;
+  return this->sim_table;
 }
+
+list<string> Singleton::getStringsToSim() {
+    return this->stringsToSim;
+}
+void Singleton::insertStringsToSim(string s) {
+    this->stringsToSim.push_back(s);
+}
+
+/*
+vector<thread> Singleton::getThreads() {
+    return this->threads;
+}
+
+void Singleton::insertThread(thread t) {
+    this->threads.push_back(t);
+}
+*/
+
