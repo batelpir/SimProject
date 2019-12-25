@@ -4,7 +4,7 @@
 
 #include "ConnectControlClientCommand.h"
 
-void ConnectControlClientCommand::connectClient(vector<string> tokens, int curr_index) {
+void ConnectControlClientCommand::connectClient() {
     // flag that checks whether we finished reading the file
     bool is_done = false;
     Singleton* singleton = Singleton::getInstance();
@@ -45,7 +45,7 @@ int ConnectControlClientCommand::execute(vector<string> tokens, int curr_index) 
     Singleton* singleton = Singleton::getInstance();
     this->ip = tokens[curr_index + 1];
     this->port = stoi(tokens[curr_index + 2]);
-    //thread *sendData = new thread(&ConnectControlClientCommand::connectClient, this);
-    //singleton->getThreads().emplace_back(sendData);
+    thread *sendData = new thread(&ConnectControlClientCommand::connectClient, this);
+    singleton->getThreads().push_back(sendData);
     return (curr_index + 3);
 }

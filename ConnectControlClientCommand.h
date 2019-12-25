@@ -20,7 +20,7 @@ class ConnectControlClientCommand : public Command {
     int port;
 public:
     virtual int execute(vector<string> tokens, int curr_index);
-    void connectClient(vector<string> tokens, int curr_index);
+    void connectClient();
 };
 
 
