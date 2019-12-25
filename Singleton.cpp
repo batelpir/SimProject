@@ -94,7 +94,7 @@ void Singleton::insertToCommandTable(string s, Command *c) {
 Var* Singleton::getfromSymbolTable(string key) {
   return this->symbol_table[key];
 }
-
+// delete. we dont use it...
 Var* Singleton::getfromSimTable(string key) {
   return this ->sim_table[key];
 }
@@ -114,13 +114,12 @@ void Singleton::insertStringsToSim(string s) {
     this->stringsToSim.push_back(s);
 }
 
+thread* Singleton::getClientThread() {
+    return this->connectClientThread/* = new thread()*/;
+}
 /*
-vector<thread> Singleton::getThreads() {
-    return this->threads;
-}
-
 void Singleton::insertThread(thread t) {
-    this->threads.push_back(t);
-}
-*/
+    this->threads.emplace_back(t);
+}*/
+
 

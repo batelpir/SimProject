@@ -44,7 +44,9 @@ int ConnectControlClientCommand::execute(vector<string> tokens, int curr_index) 
     Singleton* singleton = Singleton::getInstance();
     this->ip = tokens[curr_index + 1];
     this->port = stoi(tokens[curr_index + 2]);
-    //thread connectClientThread(connectClient(tokens, curr_index));
+    thread* t = singleton->getClientThread();
+    //t = new thread(connectClient(tokens, curr_index));
+    //singleton->getClientThread(connectClient(tokens, curr_index));
     //singleton->addThread(connectClientThread);
     return (curr_index + 3);
 }
