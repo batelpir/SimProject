@@ -5,6 +5,7 @@
 #ifndef EX3__VAR_H_
 #define EX3__VAR_H_
 #include <string>
+#include <iostream>
 using namespace std;
 // like a struct of data about the variable.
 class Var {
@@ -12,8 +13,10 @@ class Var {
   string simName;
   string arrow;
  public:
+
   // Setter
   void setValue(double v) {
+    cout<<v<<endl;
     this->value = v;
   }
   // Getter

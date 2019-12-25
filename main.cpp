@@ -95,43 +95,93 @@ int main(int argc, char *argv[]) {
     if(listen(socketfd, 1) == -1) {
         cout<<"Couldn't listen to socket"<<endl;
         throw "Error";
+    } else{
+      std::cout<<"Server is now listening ..."<<std::endl;
     }
     //accepting a client.
-    int addrlen = sizeof(address);
-    int client_socket = accept(socketfd, (struct sockaddr *) &address, (socklen_t *) &addrlen);
+    socklen_t addrlen = sizeof(address);
+    int client_socket = accept(socketfd, (struct sockaddr *) &address, &addrlen);
     cout<<client_socket;
     if(client_socket == -1) {
         cout<<"Couldn't accept a client"<<endl;
     }
     close(socketfd);
-
+    char buffer[1024] = {0};
     while(true) {
         //reading from client
-        char buffer[1024] = {0};
+        cout<< "start while"<<endl;
         int valread = read(client_socket, buffer, 1024);
         string buff_string(buffer);
-        istringstream lines(buff_string);
-        string line;
+        cout<<buff_string<<endl;
+        istringstream items(buff_string);
+        string item;
         auto iter = singleton->getSimTable().begin();
-        while (getline(lines, line, '\n')) {
-            cout <<line;
-            string item;
-            istringstream line_stream(line);
-            while (getline(line_stream, item, ',')) {
-                // update var's value
-                mutex_lock.lock();
-                iter->second->setValue(stod(item));
-                mutex_lock.unlock();
-                iter++;
-            }
+        while (getline(items, item, ',')) {
+            cout <<item<< endl;
+            mutex_lock.lock();
+            // להכניס רק אם באמת הוא המשפיע.
+            //double n = stod(item);
+            double a;
+            stringstream n(item);
+            n>>a;
+            iter->second->setValue(1);
+            mutex_lock.unlock();
+            iter++;
         }
         sleep(0.001);
+      }
+
+
+/*
+
+    //creates socket and checks if created
+    int socketFD = socket(AF_INET, SOCK_STREAM, 0);
+    if (socketFD == -1) {
+      std::cerr << "Could not create a socket"<<std::endl;
+      return -1;
     }
+    //binds socket to IP address (we want to listen to al IP)
+    sockaddr_in address;
+    address.sin_family = AF_INET;
+    // any IP in IPV4
+    address.sin_addr.s_addr = INADDR_ANY;
+    address.sin_port = htons(5400);
+    // Binds the socket to the given port at localhost.
+    if (bind(socketFD, (struct sockaddr *) &address, sizeof(address)) == -1) {
+      std::cerr<<"Could not bind the socket to an IP"<<std::endl;
+      return -2;
     }
-
-
-
-
+    // listens to clients (1 can wait in the queue)
+    if (listen(socketFD, 1) == -1) {
+      std::cerr<<"Error during listening command"<<std::endl;
+      return -3;
+    } else{
+      std::cout<<"Server is now listening ..."<<std::endl;
+    }
+    // accepts a client
+    socklen_t addrlen = sizeof(sockaddr_in);
+    int client_socket = accept(socketFD, (struct sockaddr *)&address,
+                               &addrlen);
+    if (client_socket == -1) {
+      std::cerr<<"Error accepting client"<<std::endl;
+      return -4;
+    }
+    close(socketFD);
+    //reading from client
+    char buffer[1024] = {0};
+    int count=0;
+    while(true){
+      count++;
+      int valread = read( client_socket , buffer, 1024);
+      std::cout<<buffer<<std::endl;
+    }*/
+  /*
+  int OpenServerCommand::execute(list<string>::iterator it) {
+    string port = *it;
+    thread server_thread(openServer, calculateValue(port));
+    server_thread.join();
+    return 1;
+  }*/
 
     return 0;
 }

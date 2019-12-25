@@ -8,9 +8,11 @@ Singleton* Singleton::instance = 0;
 
 Singleton :: Singleton(/*vector<string> tokens*/) {
     Var* var_ptr = nullptr;
+    Var* v = new Var();
+    Var* p = new Var();
     // insert to sim table
-    symbol_table.insert({"/instrumentation/airspeed-indicator/indicated-speed-kt", nullptr});
-    symbol_table.insert({"/sim/time/warp", nullptr});
+    symbol_table.insert({"/instrumentation/airspeed-indicator/indicated-speed-kt", v});
+    symbol_table.insert({"/sim/time/warp", p});
     symbol_table.insert({"/controls/switches/magneto", nullptr});
     symbol_table.insert({"/instrumentation/heading-indicator/offset-deg", nullptr});
     symbol_table.insert({"/instrumentation/altimeter/indicated-altitude-ft", nullptr});
@@ -56,6 +58,7 @@ Singleton :: Singleton(/*vector<string> tokens*/) {
 
     // if and while conditions need to be added here
     ///////////////////////////////////////////////////
+    /*
     Var* var = new Var();
     var->setValue(6);
     symbol_table.insert({"var", var});
@@ -67,6 +70,7 @@ Singleton :: Singleton(/*vector<string> tokens*/) {
     Var* var2 = new Var();
     var2->setValue(4);
     symbol_table.insert({"lol", var2});
+     */
     //////////////////////////////////////
 }
 
