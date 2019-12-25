@@ -10,7 +10,8 @@ void ConnectControlClientCommand::connectClient(vector<string> tokens, int curr_
     Singleton* singleton = Singleton::getInstance();
     int client_socket = socket(AF_INET, SOCK_STREAM, 0);
     if( client_socket == -1) {
-        cout << "error";
+        cout << "Couldn't open client socket"<<endl;
+        throw "Error";
     }
     sockaddr_in address;
     address.sin_family = AF_INET;
@@ -18,7 +19,8 @@ void ConnectControlClientCommand::connectClient(vector<string> tokens, int curr_
     address.sin_port = htons(this->port);
     int is_connect = connect(client_socket, (struct sockaddr *)&address, sizeof(address));
     if (is_connect == -1) {
-        cout <<"error";
+        cout <<"Couldn't connect to server"<<endl;
+        throw "Error";
     }
     list<string> strings_to_sim = singleton->getStringsToSim();
 
@@ -33,20 +35,17 @@ void ConnectControlClientCommand::connectClient(vector<string> tokens, int curr_
                 msg.append(str);
                 int is_sent = send(client_socket, msg.c_str(), msg.length(), 0);
                 if (is_sent == -1) {
-                    cout << "error";
+                    cout << "Couldn't send data to server"<<endl;
                 }
             }
         }
-
     }
 }
 int ConnectControlClientCommand::execute(vector<string> tokens, int curr_index) {
     Singleton* singleton = Singleton::getInstance();
     this->ip = tokens[curr_index + 1];
     this->port = stoi(tokens[curr_index + 2]);
-    thread* t = singleton->getClientThread();
-    //t = new thread(connectClient(tokens, curr_index));
-    //singleton->getClientThread(connectClient(tokens, curr_index));
-    //singleton->addThread(connectClientThread);
+    //thread *sendData = new thread(&ConnectControlClientCommand::connectClient, this);
+    //singleton->getThreads().emplace_back(sendData);
     return (curr_index + 3);
 }

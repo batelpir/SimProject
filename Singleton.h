@@ -28,9 +28,7 @@ class Singleton {
   map<string, Var*> symbol_table;
   map<string, Var*> sim_table;
   unordered_map<string,Command*> command_table;
-  thread *connectClientThread;
-  thread *openServerThread;
-  //vector<thread> threads;
+  vector<thread*> threads;
   list<string> stringsToSim;
 
   // Private constructor so that no objects can be created.
@@ -48,10 +46,8 @@ class Singleton {
   map<string, Var*> getSimTable();
   list<string> getStringsToSim();
   void insertStringsToSim(string s);
-  thread* getClientThread();
-  //void insertThread(thread t);
+  vector<thread*> getThreads();
 
-    //void insertThread(thread t);
 };
 
 #endif //EX3__SINGLETON_H_

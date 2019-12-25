@@ -114,12 +114,10 @@ void Singleton::insertStringsToSim(string s) {
     this->stringsToSim.push_back(s);
 }
 
-thread* Singleton::getClientThread() {
-    return this->connectClientThread/* = new thread()*/;
+
+vector<thread*> Singleton::getThreads() {
+    return this->threads;
 }
-/*
-void Singleton::insertThread(thread t) {
-    this->threads.emplace_back(t);
-}*/
+
 
 
