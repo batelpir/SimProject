@@ -16,7 +16,7 @@ class Var {
 
   // Setter
   void setValue(double v) {
-    cout<<v<<endl;
+    //cout<<v<<endl;
     this->value = v;
   }
   // Getter

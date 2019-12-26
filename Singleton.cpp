@@ -60,16 +60,16 @@ Singleton :: Singleton(/*vector<string> tokens*/) {
     ///////////////////////////////////////////////////
     /*
     Var* var = new Var();
-    var->setValue(6);
-    symbol_table.insert({"var", var});
+    var->setValue(7);
+    symbol_table.insert({"va", var});
 
     Var* var1 = new Var();
-    var1->setValue(5);
-    symbol_table.insert({"h0", var1});
+    //var1->setValue(4);
+    symbol_table.insert({"var1", var1});
 
     Var* var2 = new Var();
-    var2->setValue(4);
-    symbol_table.insert({"lol", var2});
+    //var2->setValue(5);
+    symbol_table.insert({"var2", var2});
      */
     //////////////////////////////////////
 }
@@ -122,6 +122,4 @@ void Singleton::insertStringsToSim(string s) {
 vector<thread*> Singleton::getThreads() {
     return this->threads;
 }
-
-
 

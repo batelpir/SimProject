@@ -191,8 +191,20 @@ double Functions::shuntingYard(string expression_string) {
       }
     }
   }
+  //last check
+  if(!variable.empty()) {
+    Var* variable_data = singleton->getfromSymbolTable(variable);
+    double variable_value = variable_data->getValue();
+    string value_string = to_string(variable_value);
+    //try {
+    inter->setVariables(variable + "=" + value_string);
+    //} catch (const char* e) {
+    //delete inter;
+    //}
+    variable = ""; // delete the variable name that we finish to deal with.
+  }
   // remove the spaces from the expression_string string.
-  expression_string.erase(std::remove(expression_string.begin(), expression_string.end(), ' '), expression_string.end());
+  expression_string.erase(remove(expression_string.begin(), expression_string.end(), ' '), expression_string.end());
   double val;
   //try {
     exp = inter->interpret(expression_string);

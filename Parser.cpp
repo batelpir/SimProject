@@ -15,6 +15,8 @@ void Parser::parser() {
       comm = singleton->getfromCommandTable(tokens[index]);
       if (comm != NULL) {
           index = comm->execute(tokens, index);
+      } else {
+        index++;
       }
   }
 

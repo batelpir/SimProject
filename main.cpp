@@ -1,14 +1,16 @@
 // Headers files
-/*
+
+
 #include "Parser.h"
 #include "Command.h"
 #include "UpdatingCommand.h"
 #include <string>
 #include <vector>
 #include <thread>
-*/
+
 
 #include "Singleton.h"
+#include "WhileCommand.h"
 #include "Command.h"
 #include <sys/socket.h>
 #include <string>
@@ -25,6 +27,9 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
     vector<string> tokens;
+    tokens = {"while", "va >1" ,"{", "Print", "Hello", "va", "=","va- 1","}"};
+    WhileCommand* c = new WhileCommand();
+    c->execute(tokens, 0);
      /*
     if  (argc == 2) {
         //lexer(argv[1]);
@@ -77,7 +82,7 @@ int main(int argc, char *argv[]) {
         }
     }
      */
-
+/*
     mutex mutex_lock;
     int socketfd = socket(AF_INET, SOCK_STREAM, 0);
     if(socketfd == -1) {
@@ -130,7 +135,7 @@ int main(int argc, char *argv[]) {
         }
         sleep(0.001);
       }
-
+*/
 
 /*
 

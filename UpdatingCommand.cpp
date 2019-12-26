@@ -5,8 +5,8 @@
 //
 
 int UpdatingCommand::execute(vector<string> tokens, int index) {
-  expression_string = /*tokens[index + 1]*/"(h0 - 6) /lol ";
-  var_name = /*tokens[index - 1]*/"var";
+  expression_string = tokens[index + 1];
+  var_name = tokens[index - 1];
   Singleton* singleton = Singleton::getInstance();
   double val = Functions::shuntingYard(expression_string);
   // update the var that in the map.
@@ -16,5 +16,4 @@ int UpdatingCommand::execute(vector<string> tokens, int index) {
       to_string(singleton->getfromSymbolTable(var_name) ->getValue());
   singleton->insertStringsToSim(string_to_sim);
   return index + 2;
-
 }
