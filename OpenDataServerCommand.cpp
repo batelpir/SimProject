@@ -4,8 +4,8 @@
 #include "OpenDataServerCommand.h"
 
 void OpenDataServerCommand::openServer() {
-    mutex mutex_lock;
     Singleton* singleton = Singleton::getInstance();
+    mutex mutex_lock;
     int socketfd = socket(AF_INET, SOCK_STREAM, 0);
     if(socketfd == -1) {
         cout<< "couldn't create a socket"<<endl;
@@ -22,37 +22,38 @@ void OpenDataServerCommand::openServer() {
     if(listen(socketfd, 1) == -1) {
         cout<<"Couldn't listen to socket"<<endl;
         throw "Error";
+    } else{
+        std::cout<<"Server is now listening ..."<<std::endl;
     }
     //accepting a client.
-    int addrlen = sizeof(address);
-    int client_socket = accept(socketfd, (struct sockaddr *) &address, (socklen_t *) &addrlen);
+    socklen_t addrlen = sizeof(address);
+    int client_socket = accept(socketfd, (struct sockaddr *) &address, &addrlen);
     cout<<client_socket;
     if(client_socket == -1) {
         cout<<"Couldn't accept a client"<<endl;
     }
     close(socketfd);
 
+    char buffer[1024] = {0};
+    map<string, Var*> ::iterator iter = singleton->getSimTable().begin();
     while(true) {
         //reading from client
-        char buffer[1024] = {0};
         int valread = read(client_socket, buffer, 1024);
         string buff_string(buffer);
-        istringstream lines(buff_string);
-        string line;
+        istringstream items(buff_string);
+        string item;
         auto iter = singleton->getSimTable().begin();
-        while (getline(lines, line, '\n')) {
-            cout <<line;
-            string item;
-            istringstream line_stream(line);
-            while (getline(line_stream, item, ',')) {
-                // update var's value
-                mutex_lock.lock();
+        //map<string, Var*> ::iterator iter = singleton->getSimTable().begin();
+        cout<<buffer;
+        while (getline(items, item, ',')) {
+            mutex_lock.lock();
+            // update new value only if simulator affects
+            if (iter->second->getDirection() == "<-") {
                 iter->second->setValue(stod(item));
-                mutex_lock.unlock();
-                iter++;
             }
+            mutex_lock.unlock();
+            iter++;
         }
-        sleep(0.001);
     }
 }
 int OpenDataServerCommand::execute(vector<string> tokens, int curr_index) {

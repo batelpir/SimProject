@@ -10,13 +10,13 @@ int Print :: execute(vector<string> tokens, int curr_index) {
     if (string_to_print.find("\"")) {
         cout <<this->string_to_print<<endl;
     } else {
-        // call shunting yard and check if it's an expression or not
-        //int res = shunting_yard;
-        //cout <<res<<endl;
+        // call shunting yard and calculate the expression
+        double val = Functions::shuntingYard(this->string_to_print);
+        cout<<val<<endl;
     }
     if (this->string_to_print == "done") {
         Singleton* singleton = Singleton::getInstance();
-        //singleton->insertStringsToSim("done");
+        singleton->insertStringsToSim("done");
     }
     return curr_index + 2;
 }

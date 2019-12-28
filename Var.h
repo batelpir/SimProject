@@ -11,12 +11,10 @@ using namespace std;
 class Var {
   double value;
   string simName;
-  string arrow;
+  string direction;
  public:
-
   // Setter
   void setValue(double v) {
-    //cout<<v<<endl;
     this->value = v;
   }
   // Getter
@@ -32,12 +30,12 @@ class Var {
       return this->simName;
   }
   // Setter
-  void setArrow(string s) {
-      this->arrow = s;
+  void setDirection(string s) {
+      this->direction = s;
   }
   // Getter
-  string getArrow() {
-      return this->arrow;
+  string getDirection() {
+      return this->direction;
   }
 };
 

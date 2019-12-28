@@ -5,18 +5,16 @@
 #include "DefineVarCommand.h"
 #include "Singleton.h"
 
-/*DefineVarCommand::DefineVarCommand(vector<string> tokens_input) {
-    this->tokens = tokens_input;
-}*/
 int DefineVarCommand :: execute(vector<string> tokens, int curr_index) {
-  // if it's new var
-  Singleton* instance = Singleton::getInstance();
-  Var *var = new Var();
-
-  var->setArrow(tokens[curr_index + 2]);
+  // if it's new var - enter it to symbol table and sim table
+  Singleton* singleton = Singleton::getInstance();
+  Var* var;
+  var = singleton->getSimTable()[tokens[curr_index + 4]];
+  var->setDirection(tokens[curr_index + 2]);
   var->setSimName(tokens[curr_index + 4]);
-  instance->insertToSymbolTable(tokens[curr_index + 1], var);
-  instance->insertToSimTable(tokens[curr_index + 4], var);
+  // update var in symbol table and sim table
+  singleton->insertToSymbolTable(tokens[curr_index + 1], var);
+  singleton->insertToSimTable(tokens[curr_index + 4], var);
   return curr_index + 5;
 
 }
