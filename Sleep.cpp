@@ -4,7 +4,7 @@
 
 #include "Sleep.h"
 
-int Sleep::execute(vector<string> tokens, int curr_index) {
+int Sleep::execute(vector<string> &tokens, int curr_index) {
     //call shunting yard to check if it's a number or not
     //if it's a number - execute this
     // convert string to number - atoi doesn't convert to float numbers

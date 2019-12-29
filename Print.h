@@ -10,10 +10,9 @@
 
 using namespace std;
 class Print : public Command {
-string string_to_print;
 public:
   // need to delete execute.
-    virtual int execute(vector<string> tokens, int curr_index);
+    virtual int execute(vector<string> &tokens, int curr_index);
 };
 
 

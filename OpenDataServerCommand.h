@@ -22,7 +22,7 @@ using namespace std;
 class OpenDataServerCommand : public Command {
 int port;
  public:
-    virtual int execute(vector<string> tokens, int curr_index);
+    virtual int execute(vector<string> &tokens, int curr_index);
     void openServer();
 };
 #endif //EX3__OPENDATASERVERCOMMAND_H_

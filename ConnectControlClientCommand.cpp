@@ -41,7 +41,7 @@ void ConnectControlClientCommand::connectClient() {
         }
     }
 }
-int ConnectControlClientCommand::execute(vector<string> tokens, int curr_index) {
+int ConnectControlClientCommand::execute(vector<string> &tokens, int curr_index) {
     Singleton* singleton = Singleton::getInstance();
     this->ip = tokens[curr_index + 1];
     this->port = stoi(tokens[curr_index + 2]);

@@ -4,17 +4,17 @@
 
 #include "Print.h"
 
-int Print :: execute(vector<string> tokens, int curr_index) {
-    this->string_to_print = tokens[curr_index + 1];
+int Print :: execute(vector<string> &tokens, int curr_index) {
+    string string_to_print = tokens[curr_index + 1];
     // only if brackets contain double quote
-    if (string_to_print.find("\"")) {
-        cout <<this->string_to_print<<endl;
+    if (string_to_print.find("\"\"")) {
+        cout <<string_to_print.substr(1,string_to_print.length() - 2)<<endl;
     } else {
         // call shunting yard and calculate the expression
-        double val = Functions::shuntingYard(this->string_to_print);
+        double val = Functions::shuntingYard(string_to_print);
         cout<<val<<endl;
     }
-    if (this->string_to_print == "done") {
+    if (string_to_print == "done") {
         Singleton* singleton = Singleton::getInstance();
         singleton->insertStringsToSim("done");
     }

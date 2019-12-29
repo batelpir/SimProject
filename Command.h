@@ -10,7 +10,7 @@ using namespace std;
 
 class Command {
  public:
-  virtual int execute(vector<string> tokens, int curr_index) = 0;
+  virtual int execute(vector<string> &tokens, int curr_index) = 0;
 };
 
 

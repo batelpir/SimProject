@@ -56,7 +56,7 @@ void OpenDataServerCommand::openServer() {
         }
     }
 }
-int OpenDataServerCommand::execute(vector<string> tokens, int curr_index) {
+int OpenDataServerCommand::execute(vector<string> &tokens, int curr_index) {
     Singleton* singleton = Singleton::getInstance();
     this->port = stoi(tokens[curr_index]);
     thread *recieveData = new thread(&OpenDataServerCommand::openServer, this);

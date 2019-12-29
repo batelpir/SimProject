@@ -5,7 +5,7 @@
 #include "DefineVarCommand.h"
 #include "Singleton.h"
 
-int DefineVarCommand :: execute(vector<string> tokens, int curr_index) {
+int DefineVarCommand :: execute(vector<string> &tokens, int curr_index) {
   // if it's new var - enter it to symbol table and sim table
   Singleton* singleton = Singleton::getInstance();
   Var* var;

@@ -16,6 +16,6 @@ class UpdatingCommand: public Command {
 
  public:
   //UpdatingCommand(vector<string> tokens_input);
-  virtual int execute(vector<string> tokens, int curr_index);
+  virtual int execute(vector<string> &tokens, int curr_index);
 };
 #endif //EX3__UPDATINGCOMMAND_H_

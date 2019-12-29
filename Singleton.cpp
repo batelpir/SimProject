@@ -6,10 +6,7 @@
 // Null, because instance will be initialized on demand.
 Singleton* Singleton::instance = 0;
 
-Singleton :: Singleton(/*vector<string> tokens*/) {
-    Var* var_ptr = nullptr;
-    //Var* v = new Var();
-    //Var* p = new Var();
+Singleton :: Singleton() {
     // insert to sim table
     sim_table.insert({"/instrumentation/airspeed-indicator/indicated-speed-kt", new Var()});
     sim_table.insert({"/sim/time/warp", new Var()});
@@ -48,11 +45,16 @@ Singleton :: Singleton(/*vector<string> tokens*/) {
     sim_table.insert({"/controls/switches/master-alt", new Var()});
     sim_table.insert({"/engines/engine/rpm", new Var()});
     // insert to command table
+
     command_table.insert({"openDataServer", new OpenDataServerCommand()});
     command_table.insert({"connectControlClient", new ConnectControlClientCommand()});
+
     command_table.insert({"var", new DefineVarCommand()});
+
     command_table.insert({"Print", new Print()});
+
     command_table.insert({"Sleep", new Sleep()});
+
     command_table.insert({"=", new UpdatingCommand()});
 
     // if and while conditions need to be added here
@@ -73,10 +75,10 @@ Singleton :: Singleton(/*vector<string> tokens*/) {
     //////////////////////////////////////
 }
 
-Singleton* Singleton::getInstance(/*vector<string> tokens*/) {
+Singleton* Singleton::getInstance() {
   if (instance == 0)
   {
-    instance = new Singleton(/*tokens*/);
+    instance = new Singleton();
   }
 
   return instance;

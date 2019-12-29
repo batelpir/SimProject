@@ -4,7 +4,7 @@
 // Created by batel on 19/12/2019.
 //
 
-int UpdatingCommand::execute(vector<string> tokens, int index) {
+int UpdatingCommand::execute(vector<string> &tokens, int index) {
   expression_string = tokens[index + 1];
   var_name = tokens[index - 1];
   Singleton* singleton = Singleton::getInstance();

@@ -3,7 +3,7 @@
 //
 #include "WhileCommand.h"
 
-int WhileCommand::execute(vector<string> tokens, int curr_index) {
+int WhileCommand::execute(vector<string> &tokens, int curr_index) {
   this->condition = tokens[curr_index + 1];
   vector<string> sub_tokens = this->makeSubTokens(tokens, curr_index + 3);
   Parser* parser = new Parser(sub_tokens);

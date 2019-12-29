@@ -11,7 +11,7 @@
 class WhileCommand : public Command , public ConditionComm {
 
  public:
-  virtual int execute(vector<string> tokens, int curr_index);
+  virtual int execute(vector<string> &tokens, int curr_index);
 
 };
 

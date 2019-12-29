@@ -12,7 +12,7 @@
 class Sleep : public Command {
   public:
     // need to delete the vitual execute.
-    virtual int execute(vector<string> tokens, int curr_index);
+    virtual int execute(vector<string> &tokens, int curr_index);
 
 };
 #endif //EX3_SLEEP_H
