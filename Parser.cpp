@@ -2,6 +2,7 @@
 // Created by batel on 18/12/2019.
 //
 #include "Parser.h"
+#include "Singleton.h"
 
 Parser::Parser(vector<string> tokens_input) {
   tokens = tokens_input;

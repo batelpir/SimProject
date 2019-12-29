@@ -2,6 +2,7 @@
 // Created by batel on 26/12/2019.
 //
 #include "ConditionComm.h"
+#include "Functions.h"
 
 //index_begin us the index of the first string after '{'
 vector<string> ConditionComm::makeSubTokens(vector<string> tokens, int index_begin) {

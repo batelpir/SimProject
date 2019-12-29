@@ -4,9 +4,10 @@
 
 #ifndef EX3__CONDITIONCOMM_H_
 #define EX3__CONDITIONCOMM_H_
+
 #include <string>
 #include <vector>
-#include "Functions.h"
+
 using namespace std;
 class ConditionComm {
  protected:

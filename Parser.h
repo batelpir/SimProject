@@ -6,7 +6,7 @@
 #define EX3__PARSER_H_
 #include <string>
 #include <vector>
-#include "Singleton.h"
+
 using namespace std;
 class Parser {
  private:

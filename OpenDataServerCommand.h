@@ -4,9 +4,7 @@
 
 #ifndef EX3__OPENDATASERVERCOMMAND_H_
 #define EX3__OPENDATASERVERCOMMAND_H_
-#include "Command.h"
 #include "Singleton.h"
-
 #include <sys/socket.h>
 #include <iostream>
 #include <unistd.h>

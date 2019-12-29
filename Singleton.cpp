@@ -88,11 +88,8 @@ Singleton :: Singleton() {
     command_table.insert({"connectControlClient", new ConnectControlClientCommand()});
 
     command_table.insert({"var", new DefineVarCommand()});
-
     command_table.insert({"Print", new Print()});
-
     command_table.insert({"Sleep", new Sleep()});
-
     command_table.insert({"=", new UpdatingCommand()});
     command_table.insert({"while", new WhileCommand()});
     command_table.insert({"if", new IfCommand()});

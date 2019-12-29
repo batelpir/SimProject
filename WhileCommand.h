@@ -4,15 +4,16 @@
 
 #ifndef EX3__WHILECOMMAND_H_
 #define EX3__WHILECOMMAND_H_
-#include "Command.h"
-#include "Functions.h"
+
 #include "Parser.h"
 #include "ConditionComm.h"
-class WhileCommand : public Command, public ConditionComm {
+#include "Command.h"
 
- public:
-  virtual int execute(vector<string> &tokens, int curr_index);
+using namespace std;
+class WhileCommand : public Command,public ConditionComm{
 
+public:
+    virtual int execute(vector<string> &tokens, int curr_index);
 };
 
 

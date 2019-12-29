@@ -10,7 +10,6 @@
 #include <vector>
 #include <thread>
 #include <list>
-
 #include "Var.h"
 #include "Command.h"
 #include "OpenDataServerCommand.h"
