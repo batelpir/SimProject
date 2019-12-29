@@ -12,8 +12,9 @@ int UpdatingCommand::execute(vector<string> &tokens, int index) {
   // update the var that in the map.
   Var *var = singleton->getfromSymbolTable(var_name);
   var->setValue(val);
-  string string_to_sim = singleton->getfromSymbolTable(var_name)->getSimName() +
-      to_string(singleton->getfromSymbolTable(var_name)->getValue());
+  string temp_sim_name = singleton->getfromSymbolTable(var_name)->getSimName();
+  string sim_name = temp_sim_name.substr(1, temp_sim_name.length() - 2);
+  string string_to_sim = sim_name + " " + to_string(singleton->getfromSymbolTable(var_name)->getValue());
   singleton->insertStringsToSim(string_to_sim);
-  return index + 2;
+  return 2;
 }

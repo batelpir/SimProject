@@ -8,7 +8,7 @@
 #include "Functions.h"
 #include "Parser.h"
 #include "ConditionComm.h"
-class WhileCommand : public Command , public ConditionComm {
+class WhileCommand : public Command, public ConditionComm {
 
  public:
   virtual int execute(vector<string> &tokens, int curr_index);

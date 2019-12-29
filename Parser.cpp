@@ -17,8 +17,10 @@ void Parser::parser() {
       if (comm != NULL) {
           index += comm->execute(tokens, index);
 
+      } else { // for '=' case.
+        index++;
       }
-      index++;
+
   }
 
 }

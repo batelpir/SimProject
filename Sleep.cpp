@@ -15,6 +15,6 @@ int Sleep::execute(vector<string> &tokens, int curr_index) {
     sleep(sleep_time / 1000);
     // else
     // call shunting yard
-    return curr_index + 2;
+    return 2;
 
 }

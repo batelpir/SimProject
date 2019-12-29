@@ -35,31 +35,31 @@ void OpenDataServerCommand::openServer() {
     close(socketfd);
 
     char buffer[1024] = {0};
-    map<string, Var*> ::iterator iter = singleton->getSimTable().begin();
     while(true) {
         //reading from client
         int valread = read(client_socket, buffer, 1024);
         string buff_string(buffer);
         istringstream items(buff_string);
         string item;
-        auto iter = singleton->getSimTable().begin();
-        //map<string, Var*> ::iterator iter = singleton->getSimTable().begin();
-        cout<<buffer;
+        //cout<<buffer;
+        int count = 0;
         while (getline(items, item, ',')) {
-            mutex_lock.lock();
             // update new value only if simulator affects
-            if (iter->second->getDirection() == "<-") {
-                iter->second->setValue(stod(item));
+            Var* var = singleton->getfromSimTable(singleton->getFromIndexTable(count));
+            if(var->getDirection() =="<-") {
+              mutex_lock.lock();
+              var->setValue(stod(item));
+              mutex_lock.unlock();
             }
-            mutex_lock.unlock();
-            iter++;
+            count++;
         }
     }
 }
 int OpenDataServerCommand::execute(vector<string> &tokens, int curr_index) {
     Singleton* singleton = Singleton::getInstance();
-    this->port = stoi(tokens[curr_index]);
+    this->port = stoi(tokens[curr_index + 1]);
     thread *recieveData = new thread(&OpenDataServerCommand::openServer, this);
-    singleton->getThreads().push_back(recieveData);
-    return (curr_index + 2);
+    //singleton->getThreads().emplace_back(recieveData);
+    singleton->setToTreads(recieveData);
+    return 2;
 }

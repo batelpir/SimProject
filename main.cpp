@@ -15,6 +15,7 @@ using namespace std;
 int main(int argc, char *argv[]) {
     vector<string> tokens;
     Singleton* singleton = Singleton::getInstance();
+
     if  (argc == 2) {
         //lexer(argv[1]);
     } else {
@@ -26,11 +27,11 @@ int main(int argc, char *argv[]) {
     Parser *parser = new Parser(tokens);
     parser->parser();
 
-    /*
-    vector<thread> threads = singleton->getThreads();
-    for(auto &thread : threads) {
-        thread.join();
+
+    vector<thread*> threads = singleton->getThreads();
+    for(auto thread : threads) {
+        thread->join();
     }
-    */
+
     return 0;
 }

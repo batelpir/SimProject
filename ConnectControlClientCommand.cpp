@@ -15,9 +15,15 @@ void ConnectControlClientCommand::connectClient() {
     }
     sockaddr_in address;
     address.sin_family = AF_INET;
-    address.sin_addr.s_addr = inet_addr(this->ip.c_str());
+    //address.sin_addr.s_addr = inet_addr(this->ip.c_str());
+    address.sin_addr.s_addr = inet_addr("127.0.0.1");
     address.sin_port = htons(this->port);
+    sleep(120);
     int is_connect = connect(client_socket, (struct sockaddr *)&address, sizeof(address));
+
+    cout<<"is connect"<<endl;
+    cout<<is_connect<<endl;
+
     if (is_connect == -1) {
         cout <<"Couldn't connect to server"<<endl;
         throw "Error";
@@ -46,6 +52,7 @@ int ConnectControlClientCommand::execute(vector<string> &tokens, int curr_index)
     this->ip = tokens[curr_index + 1];
     this->port = stoi(tokens[curr_index + 2]);
     thread *sendData = new thread(&ConnectControlClientCommand::connectClient, this);
-    singleton->getThreads().push_back(sendData);
-    return (curr_index + 3);
+    //singleton->getThreads().push_back(sendData);
+    singleton->setToTreads(sendData);
+    return 3;
 }

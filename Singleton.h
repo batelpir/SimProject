@@ -6,7 +6,6 @@
 #define EX3__SINGLETON_H_
 
 #include <string>
-#include <map>
 #include <unordered_map>
 #include <vector>
 #include <thread>
@@ -20,13 +19,15 @@
 #include "UpdatingCommand.h"
 #include "Print.h"
 #include "Sleep.h"
-
+#include "WhileCommand.h"
+#include "IfCommand.h"
 
 using namespace std;
 class Singleton {
   static Singleton *instance;
-  map<string, Var*> symbol_table;
-  map<string, Var*> sim_table;
+  unordered_map<string, Var*> symbol_table;
+  unordered_map<string, Var*> sim_table;
+  unordered_map<int, string> index_table;
   unordered_map<string,Command*> command_table;
   vector<thread*> threads;
   list<string> stringsToSim;
@@ -43,10 +44,13 @@ class Singleton {
   Var* getfromSymbolTable(string key);
   Var* getfromSimTable(string key);
   Command* getfromCommandTable(string key);
-  map<string, Var*> getSimTable();
+  unordered_map<string, Var*> getSimTable();
   list<string> getStringsToSim();
   void insertStringsToSim(string s);
   vector<thread*> getThreads();
+  unordered_map<int, string> getIndexTable();
+  void setToTreads(thread *t);
+  string getFromIndexTable(int key);
 
 };
 

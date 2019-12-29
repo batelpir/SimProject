@@ -210,6 +210,7 @@ double Functions::shuntingYard(string expression_string) {
     exp = inter->interpret(expression_string);
     val = exp->calculate();
     delete exp;
+    delete inter;
   //}catch(const char* e) {
     //delete exp;
   //}
