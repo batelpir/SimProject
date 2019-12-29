@@ -23,13 +23,14 @@ int main(int argc, char *argv[]) {
     // use parser with try & catch!!!
 
     tokens = Functions::lexer("flyCopy.txt");
+    Parser *parser = new Parser(tokens);
+    parser->parser();
+
     /*
     vector<thread> threads = singleton->getThreads();
     for(auto &thread : threads) {
         thread.join();
     }
     */
-    new Parser(&tokens);
-
     return 0;
 }
