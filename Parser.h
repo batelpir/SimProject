@@ -10,9 +10,10 @@
 using namespace std;
 class Parser {
  private:
-  vector<string> tokens;
+  vector<string> *tokens;
  public:
-  Parser(vector<string> tokens_input);
+  //Parser(vector<string> *tokens_input);
+  Parser(vector<string> &tokens_input);
   void parser();
 
 };
