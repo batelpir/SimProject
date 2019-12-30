@@ -29,8 +29,26 @@ void ConnectControlClientCommand::connectClient() {
         throw "Error";
     }
     list<string> *strings_to_sim = singleton->getStringsToSim();
+    /*
+    while(true) {
+        const char h[] = "set /controls/flight/rudder 1\r\n";
+        const char h1[] = "set /controls/flight/rudder -1\r\n";
+        //list<string> strings_to_sim = singleton->getStringsToSim();
+        if (is_connect != -1) {
+            //string msg = "set /controls/flight/rudder 1";
+            int is_sent = send(client_socket, h, strlen(h), 0);
+            sleep(15);
+            cout<<"finishedddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd1"<<endl;
+            //msg = "set /controls/flight/rudder -1";
+            is_sent = send(client_socket, h1, strlen(h1), 0);
+            cout<<"finishedddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd2"<<endl;
+            sleep(15);
+        }
+    }
+    */
 
     while (!strings_to_sim->empty() || !is_done) {
+    //while (true) {
         if (!strings_to_sim->empty()) {
             string str = strings_to_sim->front();
             //cout<<str<<endl;
@@ -38,22 +56,23 @@ void ConnectControlClientCommand::connectClient() {
             if (str == "done") {
                 is_done = true;
             } else {
-                //string msg = "set ";
-                //msg.append(str);
-                //msg.append("\r\n");
-
+                string msg = "set ";
+                msg.append(str);
+                msg.append("\r\n");
+                char h[msg.length() + 1];
+                strcpy(h, msg.c_str());
                 //string msg = "set /engines/engine/rpm 10\r\n";
-                const char msg[] = "set engines/engine/rpm 10\r\n";
-                cout<<msg<<endl;
+                //const char msg[] = "set /controls/switches/magnetos 555\r\n";
+                //cout<<msg<<endl;
                 //int is_sent = send(client_socket, msg.c_str(), msg.length(), 0);
-                int is_sent = send(client_socket, msg, strlen(msg), 0);
+                int is_sent = send(client_socket, h, strlen(h), 0);
                 if (is_sent == -1) {
                     cout << "Couldn't send data to server"<<endl;
                 }
-                sleep(3);
             }
         }
     }
+
 }
 int ConnectControlClientCommand::execute(vector<string> &tokens, int curr_index) {
     Singleton* singleton = Singleton::getInstance();

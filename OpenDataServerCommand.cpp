@@ -40,7 +40,7 @@ void OpenDataServerCommand::openServer() {
         string buff_string(buffer);
         istringstream items(buff_string);
         string item;
-        cout<<buffer;
+        cout<<buffer<<endl;
         int count = 0;
         while (getline(items, item, ',')) {
             Var* var = singleton->getfromSimTable(singleton->getFromIndexTable(count));
