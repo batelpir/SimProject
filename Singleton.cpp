@@ -86,7 +86,6 @@ Singleton :: Singleton() {
 
     command_table.insert({"openDataServer", new OpenDataServerCommand()});
     command_table.insert({"connectControlClient", new ConnectControlClientCommand()});
-
     command_table.insert({"var", new DefineVarCommand()});
     command_table.insert({"Print", new Print()});
     command_table.insert({"Sleep", new Sleep()});
@@ -149,11 +148,11 @@ unordered_map<string, Var*> Singleton::getSimTable() {
   return this->sim_table;
 }
 
-list<string> Singleton::getStringsToSim() {
+list<string>* Singleton::getStringsToSim() {
     return this->stringsToSim;
 }
 void Singleton::insertStringsToSim(string s) {
-    this->stringsToSim.push_back(s);
+    this->stringsToSim->push_back(s);
 }
 
 void Singleton::setToTreads(thread *t) {

@@ -29,7 +29,7 @@ class Singleton {
   unordered_map<int, string> index_table;
   unordered_map<string,Command*> command_table;
   vector<thread*> threads;
-  list<string> stringsToSim;
+  list<string> *stringsToSim = new list<string>;
 
   // Private constructor so that no objects can be created.
   Singleton();
@@ -44,7 +44,7 @@ class Singleton {
   Var* getfromSimTable(string key);
   Command* getfromCommandTable(string key);
   unordered_map<string, Var*> getSimTable();
-  list<string> getStringsToSim();
+  list<string> *getStringsToSim();
   void insertStringsToSim(string s);
   vector<thread*> getThreads();
   unordered_map<int, string> getIndexTable();

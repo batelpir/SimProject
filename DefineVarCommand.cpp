@@ -6,11 +6,14 @@
 #include "Singleton.h"
 
 int DefineVarCommand :: execute(vector<string> &tokens, int curr_index) {
-  // if it's new var - enter it to symbol table and sim table
-  if(tokens[curr_index + 2] == "=") {
-    return 1;
+    Singleton* singleton = Singleton::getInstance();
+    // if it's new var - enter it to symbol table and sim table
+    if(tokens[curr_index + 2] == "=") {
+        Var* var = new Var();
+        singleton->insertToSymbolTable(tokens[curr_index + 1] ,var);
+        return 1;
   }
-  Singleton* singleton = Singleton::getInstance();
+
   Var* var;
   string sim_name = tokens[curr_index + 4].substr(1, tokens[curr_index + 4].length() - 2);
   var = singleton->getSimTable()[sim_name];

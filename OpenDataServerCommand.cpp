@@ -28,7 +28,6 @@ void OpenDataServerCommand::openServer() {
     //accepting a client.
     socklen_t addrlen = sizeof(address);
     int client_socket = accept(socketfd, (struct sockaddr *) &address, &addrlen);
-    cout<<client_socket;
     if(client_socket == -1) {
         cout<<"Couldn't accept a client"<<endl;
     }
@@ -41,12 +40,12 @@ void OpenDataServerCommand::openServer() {
         string buff_string(buffer);
         istringstream items(buff_string);
         string item;
-        //cout<<buffer;
+        cout<<buffer;
         int count = 0;
         while (getline(items, item, ',')) {
-            // update new value only if simulator affects
             Var* var = singleton->getfromSimTable(singleton->getFromIndexTable(count));
-            if(var->getDirection() =="<-") {
+            // update new value only if simulator affects
+            if(var->getDirection() == " " || var->getDirection() =="<-") {
               mutex_lock.lock();
               var->setValue(stod(item));
               mutex_lock.unlock();

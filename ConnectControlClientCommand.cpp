@@ -16,7 +16,7 @@ void ConnectControlClientCommand::connectClient() {
     sockaddr_in address;
     address.sin_family = AF_INET;
     //address.sin_addr.s_addr = inet_addr(this->ip.c_str());
-    address.sin_addr.s_addr = inet_addr("127.0.0.1");
+    address.sin_addr.s_addr = inet_addr("10.0.2.2");
     address.sin_port = htons(this->port);
     sleep(120);
     int is_connect = connect(client_socket, (struct sockaddr *)&address, sizeof(address));
@@ -28,21 +28,29 @@ void ConnectControlClientCommand::connectClient() {
         cout <<"Couldn't connect to server"<<endl;
         throw "Error";
     }
-    list<string> strings_to_sim = singleton->getStringsToSim();
+    list<string> *strings_to_sim = singleton->getStringsToSim();
 
-    while (!strings_to_sim.empty() || !is_done) {
-        if (!strings_to_sim.empty()) {
-            string str = strings_to_sim.front();
-            strings_to_sim.pop_front();
+    while (!strings_to_sim->empty() || !is_done) {
+        if (!strings_to_sim->empty()) {
+            string str = strings_to_sim->front();
+            //cout<<str<<endl;
+            strings_to_sim->pop_front();
             if (str == "done") {
                 is_done = true;
             } else {
-                string msg = "set ";
-                msg.append(str);
-                int is_sent = send(client_socket, msg.c_str(), msg.length(), 0);
+                //string msg = "set ";
+                //msg.append(str);
+                //msg.append("\r\n");
+
+                //string msg = "set /engines/engine/rpm 10\r\n";
+                const char msg[] = "set engines/engine/rpm 10\r\n";
+                cout<<msg<<endl;
+                //int is_sent = send(client_socket, msg.c_str(), msg.length(), 0);
+                int is_sent = send(client_socket, msg, strlen(msg), 0);
                 if (is_sent == -1) {
                     cout << "Couldn't send data to server"<<endl;
                 }
+                sleep(3);
             }
         }
     }
