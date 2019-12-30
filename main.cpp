@@ -7,11 +7,7 @@
 #include <iostream>
 
 
-
-
 using namespace std;
-
-
 int main(int argc, char *argv[]) {
     vector<string> tokens;
     Singleton* singleton = Singleton::getInstance();
@@ -26,8 +22,6 @@ int main(int argc, char *argv[]) {
     tokens = Functions::lexer("flyCopy.txt");
     Parser *parser = new Parser(tokens);
     parser->parser();
-
-
     vector<thread*> threads = singleton->getThreads();
     for(auto thread : threads) {
         thread->join();
