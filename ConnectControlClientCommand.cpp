@@ -51,10 +51,11 @@ void ConnectControlClientCommand::connectClient() {
     //while (true) {
         if (!strings_to_sim->empty()) {
             string str = strings_to_sim->front();
-            cout<<str<<endl;
+            //cout<<str<<endl;
             strings_to_sim->pop_front();
             if (str == "done") {
                 is_done = true;
+                // check if we can pop done
             } else {
                 string msg = "set ";
                 msg.append(str);

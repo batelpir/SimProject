@@ -48,7 +48,9 @@ breaks = 0
 throttle = 1
 while alt < 1000 {
 	rudder = (h0 - heading)/80
+	Print("start")
 	aileron = -roll / 70
+    Print("end")
 	elevator = pitch / 50
 	Sleep(250)
 }

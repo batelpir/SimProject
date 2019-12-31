@@ -12,5 +12,3 @@ add_executable(ex3 main.cpp Parser.h Parser.cpp Singleton.h
         DefineVarCommand.cpp Functions.cpp Functions.h ConnectControlClientCommand.cpp
         OpenDataServerCommand.cpp OpenDataServerCommand.h ConnectControlClientCommand.h IfCommand.h
         IfCommand.cpp ConditionComm.h ConditionComm.cpp WhileCommand.h WhileCommand.cpp)
-
-
