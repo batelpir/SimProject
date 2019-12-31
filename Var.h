@@ -10,8 +10,8 @@ using namespace std;
 // like a struct of data about the variable.
 class Var {
   double value;
-  string simName;
-  string direction;
+  string simName = "";
+  string direction = "";
  public:
   // Setter
   void setValue(double v) {

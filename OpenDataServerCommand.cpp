@@ -45,7 +45,7 @@ void OpenDataServerCommand::openServer() {
         while (getline(items, item, ',')) {
             Var* var = singleton->getfromSimTable(singleton->getFromIndexTable(count));
             // update new value only if simulator affects
-            if(var->getDirection() == " " || var->getDirection() =="<-") {
+            if(var->getDirection() == "" || var->getDirection() =="<-") {
               mutex_lock.lock();
               var->setValue(stod(item));
               mutex_lock.unlock();

@@ -21,8 +21,8 @@ void ConnectControlClientCommand::connectClient() {
     sleep(120);
     int is_connect = connect(client_socket, (struct sockaddr *)&address, sizeof(address));
 
-    cout<<"is connect"<<endl;
-    cout<<is_connect<<endl;
+    //cout<<"is connect"<<endl;
+    //cout<<is_connect<<endl;
 
     if (is_connect == -1) {
         cout <<"Couldn't connect to server"<<endl;
@@ -51,7 +51,7 @@ void ConnectControlClientCommand::connectClient() {
     //while (true) {
         if (!strings_to_sim->empty()) {
             string str = strings_to_sim->front();
-            //cout<<str<<endl;
+            cout<<str<<endl;
             strings_to_sim->pop_front();
             if (str == "done") {
                 is_done = true;
