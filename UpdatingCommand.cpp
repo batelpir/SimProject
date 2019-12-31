@@ -13,6 +13,9 @@ int UpdatingCommand::execute(vector<string> &tokens, int index) {
   // update the var that in the map.
   Var *var = singleton->getfromSymbolTable(var_name);
   var->setValue(val);
+  if (var_name == "h0") {
+      cout<<var_name;
+  }
   if(var->getSimName() != "") {
       string temp_sim_name = singleton->getfromSymbolTable(var_name)->getSimName();
       string sim_name = temp_sim_name.substr(1, temp_sim_name.length() - 2);

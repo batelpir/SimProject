@@ -2,6 +2,9 @@
 // Created by batel on 26/12/2019.
 //
 #include "WhileCommand.h"
+#include <iostream>
+
+using namespace std;
 
 int WhileCommand::execute(vector<string> &tokens, int curr_index) {
     this->condition = tokens[curr_index + 1];
@@ -11,5 +14,6 @@ int WhileCommand::execute(vector<string> &tokens, int curr_index) {
         parser->parser();
     }
     delete (parser);
-    return curr_index + 4 + sub_tokens.size();
+    //return curr_index + 4 + sub_tokens.size();
+    return 4 + sub_tokens.size();
 }
