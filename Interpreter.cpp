@@ -75,10 +75,11 @@ Expression* Interpreter:: interpret(string str){
       }
       if( i == 0 || str[i-1] == '(') {
         string s(1,str[i+1]);
+        /*
         // if the next char is a variable or a begining of a variable:
         if(regex_match(s,reg2)) {
           throw "Error";
-        }
+        }*/
         myStack.push("$"); // unary plus.
       } else {
         while(!myStack.empty() && (myStack.top() == "*" || myStack.top() == "/" ||
@@ -96,10 +97,11 @@ Expression* Interpreter:: interpret(string str){
       }
       if(i == 0 || str[i-1] == '(') {
         string s(1,str[i+1]);
+        /*
         // if the next char is a variable or a begining of a variable:
         if(regex_match(s,reg2)) {
           throw "Error";
-        }
+        }*/
         myStack.push("#"); // unary minus.
       } else {
         while(!myStack.empty() && (myStack.top() == "*" || myStack.top() == "/" ||
