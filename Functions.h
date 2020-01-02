@@ -20,5 +20,6 @@ class Functions {
   static void splitLine(vector<string> *tokens, string line, int delim_pos);
   static vector<string> lexer(string file_name);
   static double shuntingYard(string expression_string);
+  static void helper(ifstream &file_obj, vector<string> *tokens, string line);
 };
 #endif //EX3__FUNCTIONS_H_

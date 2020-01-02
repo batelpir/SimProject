@@ -66,7 +66,6 @@ void Functions:: splitLine(vector<string> *tokens, string line, int delim_pos) {
                 tokens->push_back(item);
             }
         } else {
-            //regex patt("[\\s]*\\((.*?)\\)");
             regex patt("[\\s]*(.+)$");
             if (std::regex_search(line, match, patt)) {
                 paren_pos = match.str(1).find('(');
@@ -101,6 +100,7 @@ void Functions:: splitLine(vector<string> *tokens, string line, int delim_pos) {
 vector<string> Functions::lexer(string file_name) {
   vector<string> tokens;
   string line;
+  smatch match;
   // open file in order to read it
   ifstream file_obj;
   file_obj.open(file_name, ios::in);
@@ -108,41 +108,98 @@ vector<string> Functions::lexer(string file_name) {
     throw "Error: Couldn't open the file";
   }
   while (getline(file_obj, line)) {
-    int space_pos = line.find(' ');
-    if (line.find("while") != string::npos || line.find("if") != string::npos) {
-      // enter while/if word
-      tokens.push_back(line.substr(0, space_pos));
-      // enter condition
-      tokens.push_back(line.substr(space_pos + 1, line.size() - space_pos - 2));
-      // enter '{'
-      tokens.push_back(line.substr(line.size() - 1));
-      getline(file_obj, line);
-      while (line != "}") {
-        int delim_pos = line.find('=');
-        if (delim_pos == -1) {
-          delim_pos = line.find('(');
+    if (line.find("var") != -1 && line.find("{") != -1) {
+        // enter the name of function
+        int paren_pos = line.find('(');
+        tokens.push_back(line.substr(0, paren_pos));
+        // take all the expression in brackets
+        regex patt("[\\s]*\\((.*?)\\)");
+        string tmp_line = line.substr(paren_pos, line.length() - 2);
+        if (std::regex_search(tmp_line, match, patt)) {
+            tokens.push_back(match.str(1));
         }
-        splitLine(&tokens, line, delim_pos);
+        // enter '{'
+        tokens.push_back("{");
         getline(file_obj, line);
-        if (line == "}") {
-          tokens.push_back("}");
+        while (line != "}") {
+            helper(file_obj, &tokens, line);
+            getline(file_obj, line);
+            if (line == "}") {
+                tokens.push_back("}");
+            }
         }
-      }
     } else {
-      int delim_pos = line.find('=');
-      if (delim_pos == -1) {
-        delim_pos = line.find('(');
-      }
-      splitLine(&tokens, line, delim_pos);
+        helper(file_obj, &tokens, line);
     }
+
   } // end of while - reading line by line from file
 
-  /*
   for (int j = 0; j < tokens.size(); j++) {
     cout << tokens[j] << endl;
-  }*/
+  }
   return tokens;
 }
+
+void Functions::helper(ifstream &file_obj, vector<string> *tokens, string line) {
+    //remove trailing spaces from line
+    int start = line.find_first_not_of(" \t");
+    line = line.substr(start);
+    int space_pos = line.find(' ');
+    if (line.find("while") != string::npos || line.find("if") != string::npos) {
+        // enter while/if word
+        tokens->push_back(line.substr(0, space_pos));
+        // enter condition
+        tokens->push_back(line.substr(space_pos + 1, line.size() - space_pos - 2));
+        // enter '{'
+        tokens->push_back(line.substr(line.size() - 1));
+        getline(file_obj, line);
+        while (line != "}") {
+            int delim_pos = line.find('=');
+            if (delim_pos == -1) {
+                delim_pos = line.find('(');
+            }
+            splitLine(tokens, line, delim_pos);
+            getline(file_obj, line);
+            //remove trailing spaces from line
+            int start = line.find_first_not_of(" \t");
+            line = line.substr(start);
+            if (line == "}") {
+                tokens->push_back("}");
+            }
+        }
+    } else {
+        int delim_pos = line.find('=');
+        if (delim_pos == -1) {
+            delim_pos = line.find('(');
+        }
+        splitLine(tokens, line, delim_pos);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 double Functions::shuntingYard(string expression_string) {
   Singleton* singleton = Singleton::getInstance();
 
