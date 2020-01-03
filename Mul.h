@@ -5,6 +5,9 @@
 #ifndef EX3__MUL_H_
 #define EX3__MUL_H_
 #include "BinaryOperator.h"
+/*
+ * multiples exp1 by exp2.
+ */
 class Mul: public BinaryOperator{
  public:
   Mul(Expression *exp1, Expression *exp2) {

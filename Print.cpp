@@ -3,7 +3,9 @@
 //
 
 #include "Print.h"
-
+/*
+ * 'execute' - checks which data it needs to print (string/ number..) and prints it.
+ */
 int Print :: execute(vector<string> &tokens, int curr_index) {
     string string_to_print = tokens[curr_index + 1];
     // only if brackets contain double quote

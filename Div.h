@@ -1,7 +1,9 @@
 //
 // Created by batel on 19/12/2019.
 //
-
+/*
+ * divides exp1 by exp2.
+ */
 #ifndef EX3__DIV_H_
 #define EX3__DIV_H_
 #include "BinaryOperator.h"

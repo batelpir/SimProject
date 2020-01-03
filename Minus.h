@@ -5,6 +5,9 @@
 #ifndef EX3__MINUS_H_
 #define EX3__MINUS_H_
 #include "BinaryOperator.h"
+/*
+ * reduces exp2 from exp1.
+ */
 class Minus: public BinaryOperator{
  public:
   Minus(Expression *exp1, Expression *exp2){

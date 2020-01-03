@@ -30,8 +30,6 @@ double Variable::calculate(){
   return this->value;
 }
 Variable::Variable(string varName, double varValue) {
-  //check the name.
-  //if(name.at(0) != )
   this->value = varValue;
   this->name = varName;
 }

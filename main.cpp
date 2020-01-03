@@ -5,10 +5,13 @@
 #include <string>
 #include <vector>
 #include <iostream>
-
-
 using namespace std;
+/*
+ * takes the name of the file from argv and lexing + parsing it.
+ * in the end, waits to the threads to finish running.
+ */
 int main(int argc, char *argv[]) {
+
     vector<string> tokens;
     Singleton* singleton = Singleton::getInstance();
 

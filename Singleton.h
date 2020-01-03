@@ -20,8 +20,10 @@
 #include "Sleep.h"
 #include "WhileCommand.h"
 #include "IfCommand.h"
-
 using namespace std;
+/*
+ * containing all the maps, lists and vector that we use.
+ */
 class Singleton {
   static Singleton *instance;
   unordered_map<string, Var*> symbol_table;

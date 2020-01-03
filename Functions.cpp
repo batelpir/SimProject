@@ -3,7 +3,6 @@
 //
 #include "Functions.h"
 
-
 void Functions:: splitLine(vector<string> *tokens, string line, int delim_pos) {
     // Note - we should pass stringstream by reference because stream doesnt have copy constructors
     string item;
@@ -133,10 +132,10 @@ vector<string> Functions::lexer(string file_name) {
     }
 
   } // end of while - reading line by line from file
-
+/*
   for (int j = 0; j < tokens.size(); j++) {
     cout << tokens[j] << endl;
-  }
+  }*/
   return tokens;
 }
 
@@ -218,11 +217,11 @@ double Functions::shuntingYard(string expression_string) {
           Var* variable_data = singleton->getfromSymbolTable(variable);
           double variable_value = variable_data->getValue();
           string value_string = to_string(variable_value);
-          //try {
+          try {
             inter->setVariables(variable + "=" + value_string);
-          //} catch (const char* e) {
-            //delete inter;
-          //}
+          } catch (const char* e) {
+            delete inter;
+          }
           variable = ""; // delete the variable name that we finish to deal with.
         }
       }
@@ -233,23 +232,24 @@ double Functions::shuntingYard(string expression_string) {
     Var* variable_data = singleton->getfromSymbolTable(variable);
     double variable_value = variable_data->getValue();
     string value_string = to_string(variable_value);
-    //try {
+    try {
     inter->setVariables(variable + "=" + value_string);
-    //} catch (const char* e) {
-    //delete inter;
-    //}
+    } catch (const char* e) {
+      delete inter;
+    }
     variable = ""; // delete the variable name that we finish to deal with.
   }
   // remove the spaces from the expression_string string.
   expression_string.erase(remove(expression_string.begin(), expression_string.end(), ' '), expression_string.end());
   double val;
-  //try {
+  try {
     exp = inter->interpret(expression_string);
     val = exp->calculate();
     delete exp;
     delete inter;
-  //}catch(const char* e) {
-    //delete exp;
-  //}
+  }catch(const char* e) {
+    delete exp;
+    delete inter;
+  }
   return val;
 }

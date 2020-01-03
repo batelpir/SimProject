@@ -14,13 +14,16 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <thread>
-
+/*
+ * the command which makes as to connect to the simulator as client.
+ * "execute" is calling to "connect client"
+ */
 class ConnectControlClientCommand : public Command {
-    string ip;
-    int port;
+  string ip;
+  int port;
 public:
-    virtual int execute(vector<string> &tokens, int curr_index);
-    void connectClient();
+  virtual int execute(vector<string> &tokens, int curr_index);
+  void connectClient();
 };
 
 

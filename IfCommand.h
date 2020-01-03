@@ -8,7 +8,9 @@
 #include "Parser.h"
 #include "ConditionComm.h"
 #include "Command.h"
-
+/*
+ * the command which called in case we see the 'if' word in the tokens.
+ */
 class IfCommand : public Command , public ConditionComm{
  public:
   virtual int execute(vector<string> &tokens, int curr_index);

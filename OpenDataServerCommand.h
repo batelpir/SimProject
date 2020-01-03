@@ -16,7 +16,9 @@
 #include <mutex>
 
 using namespace std;
-
+/*
+ * we are acting here as a server and the client is only the simulator.
+ */
 class OpenDataServerCommand : public Command {
 int port;
  public:

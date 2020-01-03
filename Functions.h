@@ -15,6 +15,12 @@
 #include "Singleton.h"
 #include "Interpreter.h"
 using namespace std;
+/**
+ * a class which has static functions that do diverse thinks.
+ * "split line" - helps to lexer function to split specific line.
+ * "lexer" - splits all the given file into tokens.
+ * "shunting yard" - accepts a string that represent some expression and returns its numeric value
+ */
 class Functions {
  public:
   static void splitLine(vector<string> *tokens, string line, int delim_pos);

@@ -5,7 +5,11 @@
 #include <iostream>
 
 using namespace std;
-
+/*
+ * execute - checks if the condition is true and accordingly
+ * to it executes all the commands that are into the 'while'
+ * scope while the condition is true.
+ */
 int WhileCommand::execute(vector<string> &tokens, int curr_index) {
     this->condition = tokens[curr_index + 1];
     vector<string> sub_tokens = this->makeSubTokens(tokens, curr_index + 3);
@@ -14,6 +18,5 @@ int WhileCommand::execute(vector<string> &tokens, int curr_index) {
         parser->parser();
     }
     delete (parser);
-    //return curr_index + 4 + sub_tokens.size();
     return 4 + sub_tokens.size();
 }

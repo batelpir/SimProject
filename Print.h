@@ -7,11 +7,15 @@
 #include "Command.h"
 #include "Singleton.h"
 #include <iostream>
-
+/*
+ * the command which prints data to the screen.
+ * the data is given from tokens vector.
+ * is inherit Command because it is kind of command.
+ * is called in parser.
+ */
 using namespace std;
 class Print : public Command {
 public:
-  // need to delete execute.
     virtual int execute(vector<string> &tokens, int curr_index);
 };
 

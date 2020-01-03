@@ -7,7 +7,11 @@
 #include <string>
 #include <iostream>
 using namespace std;
-// like a struct of data about the variable.
+
+/*
+ * contain all the data about a variable that in the file.
+ * have also some behaviors to update and get the data.
+ */
 class Var {
   double value;
   string simName = "";

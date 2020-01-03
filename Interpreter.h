@@ -1,7 +1,10 @@
 //
 // Created by batel on 19/12/2019.
 //
-
+/*
+ * 'interpret' - return an expression that appropriate to a given string
+ * 'set variables' - insert to variables map the var name with his value.
+ */
 #ifndef EX3__INTERPRETER_H_
 #define EX3__INTERPRETER_H_
 #include "Expression.h"

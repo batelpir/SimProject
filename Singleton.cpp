@@ -17,7 +17,7 @@ Singleton :: Singleton() {
     index_table.insert({6, "/instrumentation/attitude-indicator/indicated-pitch-deg"});
     index_table.insert({7, "/instrumentation/attitude-indicator/indicated-roll-deg"});
     index_table.insert({8, "/instrumentation/attitude-indicator/internal-pitch-deg"});
-    index_table.insert({9, "instrumentation/attitude-indicator/internal-roll-deg"});
+    index_table.insert({9, "/instrumentation/attitude-indicator/internal-roll-deg"});
     index_table.insert({10, "/instrumentation/encoder/indicated-altitude-ft"});
     index_table.insert({11, "/instrumentation/encoder/pressure-alt-ft"});
     index_table.insert({12, "/instrumentation/gps/indicated-altitude-ft"});
@@ -55,7 +55,7 @@ Singleton :: Singleton() {
     sim_table.insert({"/instrumentation/attitude-indicator/indicated-pitch-deg", new Var()});
     sim_table.insert({"/instrumentation/attitude-indicator/indicated-roll-deg", new Var()});
     sim_table.insert({"/instrumentation/attitude-indicator/internal-pitch-deg", new Var()});
-    sim_table.insert({"instrumentation/attitude-indicator/internal-roll-deg", new Var()});
+    sim_table.insert({"/instrumentation/attitude-indicator/internal-roll-deg", new Var()});
     sim_table.insert({"/instrumentation/encoder/indicated-altitude-ft", new Var()});
     sim_table.insert({"/instrumentation/encoder/pressure-alt-ft", new Var()});
     sim_table.insert({"/instrumentation/gps/indicated-altitude-ft", new Var()});
@@ -82,8 +82,8 @@ Singleton :: Singleton() {
     sim_table.insert({"/controls/switches/master-bat", new Var()});
     sim_table.insert({"/controls/switches/master-alt", new Var()});
     sim_table.insert({"/engines/engine/rpm", new Var()});
-    // insert to command table
 
+    // insert to command table
     command_table.insert({"openDataServer", new OpenDataServerCommand()});
     command_table.insert({"connectControlClient", new ConnectControlClientCommand()});
     command_table.insert({"var", new DefineVarCommand()});
@@ -92,25 +92,8 @@ Singleton :: Singleton() {
     command_table.insert({"=", new UpdatingCommand()});
     command_table.insert({"while", new WhileCommand()});
     command_table.insert({"if", new IfCommand()});
-
-    // if and while conditions need to be added here
-    ///////////////////////////////////////////////////
-    /*
-    Var* var = new Var();
-    var->setValue(7);
-    symbol_table.insert({"va", var});
-
-    Var* var1 = new Var();
-    //var1->setValue(4);
-    symbol_table.insert({"var1", var1});
-
-    Var* var2 = new Var();
-    //var2->setValue(5);
-    symbol_table.insert({"var2", var2});
-     */
-    //////////////////////////////////////
 }
-
+// return the instance of singleton
 Singleton* Singleton::getInstance() {
   if (instance == 0)
   {
@@ -135,7 +118,7 @@ void Singleton::insertToCommandTable(string s, Command *c) {
 Var* Singleton::getfromSymbolTable(string key) {
   return this->symbol_table[key];
 }
-// delete. we dont use it...
+
 Var* Singleton::getfromSimTable(string key) {
   return this ->sim_table[key];
 }
@@ -151,6 +134,7 @@ unordered_map<string, Var*> Singleton::getSimTable() {
 list<string>* Singleton::getStringsToSim() {
     return this->stringsToSim;
 }
+
 void Singleton::insertStringsToSim(string s) {
     this->stringsToSim->push_back(s);
 }
@@ -163,10 +147,8 @@ vector<thread*> Singleton::getThreads() {
     return this->threads;
 }
 
-unordered_map<int, string> Singleton::getIndexTable() {
-  return this->index_table;
-}
 string Singleton::getFromIndexTable(int key) {
   return this->index_table[key];
 }
 
+// maybe put here destructor

@@ -5,6 +5,9 @@
 #ifndef EX3__VALUE_H_
 #define EX3__VALUE_H_
 #include "Expression.h"
+/*
+ * represent a value (a number).
+ */
 class Value: public Expression{
   double val;
  public:

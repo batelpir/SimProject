@@ -5,6 +5,9 @@
 #ifndef EX3__UPLUS_H_
 #define EX3__UPLUS_H_
 #include "UnaryOperator.h"
+/*
+ * 'calculate' - return the value as is.
+ */
 class UPlus: public UnaryOperator{
  public:
   UPlus(Expression *expression){

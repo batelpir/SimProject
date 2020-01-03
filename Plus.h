@@ -5,6 +5,9 @@
 #ifndef EX3__PLUS_H_
 #define EX3__PLUS_H_
 #include "BinaryOperator.h"
+/*
+ * sum exp1 by exp2.
+ */
 class Plus: public BinaryOperator{
  public:
   Plus(Expression *exp1, Expression *exp2){

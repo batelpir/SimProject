@@ -2,7 +2,10 @@
 // Created by batel on 22/12/2019.
 //
 #include "OpenDataServerCommand.h"
-
+/*
+ * open a socket and close it after a client connect with us.
+ * read data from the client and update it in sim map.
+ */
 void OpenDataServerCommand::openServer() {
     Singleton* singleton = Singleton::getInstance();
     mutex mutex_lock;
@@ -54,11 +57,11 @@ void OpenDataServerCommand::openServer() {
         }
     }
 }
+// create a thread and run into him the 'open server' function
 int OpenDataServerCommand::execute(vector<string> &tokens, int curr_index) {
     Singleton* singleton = Singleton::getInstance();
     this->port = stoi(tokens[curr_index + 1]);
     thread *recieveData = new thread(&OpenDataServerCommand::openServer, this);
-    //singleton->getThreads().emplace_back(recieveData);
     singleton->setToTreads(recieveData);
     return 2;
 }
