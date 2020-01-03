@@ -153,17 +153,20 @@ void Functions::helper(ifstream &file_obj, vector<string> *tokens, string line) 
         // enter '{'
         tokens->push_back(line.substr(line.size() - 1));
         getline(file_obj, line);
-        while (line != "}") {
-            int delim_pos = line.find('=');
-            if (delim_pos == -1) {
+        //remove trailing spaces from line
+        int start = line.find_first_not_of(" \t");
+        line = line.substr(start);
+         while (line != "}") {
+             int delim_pos = line.find('=');
+             if (delim_pos == -1) {
                 delim_pos = line.find('(');
-            }
-            splitLine(tokens, line, delim_pos);
-            getline(file_obj, line);
-            //remove trailing spaces from line
-            int start = line.find_first_not_of(" \t");
-            line = line.substr(start);
-            if (line == "}") {
+                }
+             splitLine(tokens, line, delim_pos);
+             getline(file_obj, line);
+             //remove trailing spaces from line
+             start = line.find_first_not_of(" \t");
+             line = line.substr(start);
+             if (line == "}") {
                 tokens->push_back("}");
             }
         }
@@ -175,30 +178,6 @@ void Functions::helper(ifstream &file_obj, vector<string> *tokens, string line) 
         splitLine(tokens, line, delim_pos);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 double Functions::shuntingYard(string expression_string) {
   Singleton* singleton = Singleton::getInstance();
