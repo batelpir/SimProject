@@ -210,6 +210,7 @@ double Functions::shuntingYard(string expression_string) {
             inter->setVariables(variable + "=" + value_string);
           } catch (const char* e) {
             delete inter;
+            cout<<e<<endl;
           }
           variable = ""; // delete the variable name that we finish to deal with.
         }
@@ -225,6 +226,7 @@ double Functions::shuntingYard(string expression_string) {
     inter->setVariables(variable + "=" + value_string);
     } catch (const char* e) {
       delete inter;
+      cout<<e<<endl;
     }
     variable = ""; // delete the variable name that we finish to deal with.
   }
@@ -239,6 +241,7 @@ double Functions::shuntingYard(string expression_string) {
   }catch(const char* e) {
     delete exp;
     delete inter;
+    cout<<e<<endl;
   }
   return val;
 }

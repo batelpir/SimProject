@@ -39,7 +39,7 @@
  */
 int OpenDataServerCommand::execute(vector<string> &tokens, int curr_index) {
     Singleton* singleton = Singleton::getInstance();
-    this->port = stoi(tokens[curr_index + 1]);
+    this->port = Functions::shuntingYard(tokens[curr_index + 1]);
     int socketfd = socket(AF_INET, SOCK_STREAM, 0);
     if(socketfd == -1) {
         cout<< "couldn't create a socket"<<endl;
@@ -68,6 +68,7 @@ int OpenDataServerCommand::execute(vector<string> &tokens, int curr_index) {
     close(socketfd);
 
     thread *recieveData = new thread(&OpenDataServerCommand::openServer, this, client_socket);
+    // add the thread to the threads vector that in singleton.
     singleton->setToTreads(recieveData);
     return 2;
 }

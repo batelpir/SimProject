@@ -41,6 +41,7 @@ class Singleton {
  public:
   // Static access method.
   static Singleton* getInstance();
+  // getters and setters.
   void insertToSymbolTable(string s, Var *v);
   void insertToCommandTable(string s, Command *c);
   void insertToSimTable(string s, Var *v);

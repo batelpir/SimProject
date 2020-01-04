@@ -6,13 +6,16 @@
 #define EX3__PARSER_H_
 #include <string>
 #include <vector>
-
+#include "FuncCommand.h"
+/*
+ * parse each command accordingly the tokens
+ * which given to him in the constructor
+ */
 using namespace std;
 class Parser {
  private:
   vector<string> tokens;
  public:
-  //Parser(vector<string> *tokens_input);
   Parser(vector<string> tokens_input);
   void parser();
 

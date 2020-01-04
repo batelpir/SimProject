@@ -4,22 +4,19 @@
 #include "ConditionComm.h"
 #include "Functions.h"
 
-//index_begin us the index of the first string after '{'
-vector<string> ConditionComm::makeSubTokens(vector<string> tokens, int index_begin) {
-  vector<string> sub_tokens;
-  int index_end = index_begin;
-  while (tokens[index_end] != "}") {
-    sub_tokens.push_back(tokens[index_end]);
-    index_end++;
-  } // now index of end is the index of "}" and sub tokens is done.
-  return sub_tokens;
-}
+/*
+ * check condition - return true if the condition
+ * is happening or false if not.
+ * sides calculate - helps to "check condition" function
+ * to calculate the numeric value of each side in the condition
+ */
 
 bool ConditionComm::check_condition() {
+  // erase all spaces from the string
   condition.erase(remove(condition.begin(), condition.end(), ' '), condition.end());
   // here the values of each side will be.
   double side1_value, side2_value;
-
+  // check every possible delimiter
   int pos = condition.find("==");
   if (pos != -1) {
     this->sidesCalculate(pos, 2 , side1_value, side2_value );
