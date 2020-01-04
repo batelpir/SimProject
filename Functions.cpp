@@ -36,17 +36,7 @@ void Functions:: splitLine(vector<string> *tokens, string line, int delim_pos) {
 
         if (std::regex_search(line, match, patt)) {
             int equal_pos = match.str(1).find('=');
-            // enter ifs for cases of *= and /=
-            if ((match.str(1)[equal_pos - 1]) == '+') {
-                tokens->push_back("+=");
-            }
-            if ((match.str(1)[equal_pos - 1]) == '-') {
-                tokens->push_back("-=");
-            }
-            if (match.str(1)[equal_pos - 1] != '-' && match.str(1)[equal_pos - 1] != '+') {
-                tokens->push_back("=");
-            }
-
+            tokens->push_back("=");
             regex patt("[\\s]*(.*)");
             equal_pos = line.find('=');
             string tmp_line = line.substr(equal_pos + 1);
@@ -70,12 +60,10 @@ void Functions:: splitLine(vector<string> *tokens, string line, int delim_pos) {
                 paren_pos = match.str(1).find('(');
                 if (paren_pos != 0) {
                     // it means there is a word before brackets so push it
-                    //tokens->push_back(tmp_line);
                     tokens->push_back(match.str(1).substr(0, paren_pos));
                 }
             }
         }
-
         if (line.find(',') != -1) {
             //split by commas
             paren_pos = match.str(1).find('(');
@@ -132,7 +120,8 @@ vector<string> Functions::lexer(string file_name) {
     }
 
   } // end of while - reading line by line from file
-/*
+
+  /*
   for (int j = 0; j < tokens.size(); j++) {
     cout << tokens[j] << endl;
   }*/

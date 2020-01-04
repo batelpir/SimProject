@@ -23,6 +23,6 @@ class OpenDataServerCommand : public Command {
 int port;
  public:
     virtual int execute(vector<string> &tokens, int curr_index);
-    void openServer();
+    void openServer(int client_socket);
 };
 #endif //EX3__OPENDATASERVERCOMMAND_H_

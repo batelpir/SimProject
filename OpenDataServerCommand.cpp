@@ -2,13 +2,44 @@
 // Created by batel on 22/12/2019.
 //
 #include "OpenDataServerCommand.h"
+
 /*
- * open a socket and close it after a client connect with us.
- * read data from the client and update it in sim map.
- */
-void OpenDataServerCommand::openServer() {
+* read data from the client and update it in sim map.
+*/
+ void OpenDataServerCommand::openServer(int client_socket) {
     Singleton* singleton = Singleton::getInstance();
     mutex mutex_lock;
+
+    char buffer[1024] = {0};
+    while(!singleton->getIsDone()) {
+        //reading from client
+        int valread = read(client_socket, buffer, 1024);
+        string buff_string(buffer);
+        istringstream items(buff_string);
+        string item;
+        int count = 0;
+        while (getline(items, item, ',')) {
+            Var* var = singleton->getfromSimTable(singleton->getFromIndexTable(count));
+            // update new value only if simulator affects
+            if(var->getDirection() == "" || var->getDirection() =="<-") {
+              mutex_lock.lock();
+              var->setValue(stod(item));
+              mutex_lock.unlock();
+            }
+            count++;
+        }
+        if (singleton->getIsDone()) {
+            close(client_socket);
+        }
+    }
+}
+/*
+ * open a socket and close it after a client connect with us.
+ * create a thread and run the 'open server' function
+ */
+int OpenDataServerCommand::execute(vector<string> &tokens, int curr_index) {
+    Singleton* singleton = Singleton::getInstance();
+    this->port = stoi(tokens[curr_index + 1]);
     int socketfd = socket(AF_INET, SOCK_STREAM, 0);
     if(socketfd == -1) {
         cout<< "couldn't create a socket"<<endl;
@@ -36,32 +67,7 @@ void OpenDataServerCommand::openServer() {
     }
     close(socketfd);
 
-    char buffer[1024] = {0};
-    while(true) {
-        //reading from client
-        int valread = read(client_socket, buffer, 1024);
-        string buff_string(buffer);
-        istringstream items(buff_string);
-        string item;
-        //cout<<buffer<<endl;
-        int count = 0;
-        while (getline(items, item, ',')) {
-            Var* var = singleton->getfromSimTable(singleton->getFromIndexTable(count));
-            // update new value only if simulator affects
-            if(var->getDirection() == "" || var->getDirection() =="<-") {
-              mutex_lock.lock();
-              var->setValue(stod(item));
-              mutex_lock.unlock();
-            }
-            count++;
-        }
-    }
-}
-// create a thread and run into him the 'open server' function
-int OpenDataServerCommand::execute(vector<string> &tokens, int curr_index) {
-    Singleton* singleton = Singleton::getInstance();
-    this->port = stoi(tokens[curr_index + 1]);
-    thread *recieveData = new thread(&OpenDataServerCommand::openServer, this);
+    thread *recieveData = new thread(&OpenDataServerCommand::openServer, this, client_socket);
     singleton->setToTreads(recieveData);
     return 2;
 }

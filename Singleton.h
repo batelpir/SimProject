@@ -32,6 +32,8 @@ class Singleton {
   unordered_map<string,Command*> command_table;
   vector<thread*> threads;
   list<string> *stringsToSim = new list<string>;
+  // volatile is necceary here because two threads
+  volatile bool is_done = false;
 
   // Private constructor so that no objects can be created.
   Singleton();
@@ -52,6 +54,9 @@ class Singleton {
   unordered_map<int, string> getIndexTable();
   void setToTreads(thread *t);
   string getFromIndexTable(int key);
+  bool getIsDone();
+  void setIsDone();
+
 
 };
 

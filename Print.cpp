@@ -16,7 +16,7 @@ int Print :: execute(vector<string> &tokens, int curr_index) {
         double val = Functions::shuntingYard(string_to_print);
         cout<<val<<endl;
     }
-    if (string_to_print == "done") {
+    if (string_to_print.substr(1,string_to_print.length() - 2) == "done") {
         Singleton* singleton = Singleton::getInstance();
         singleton->insertStringsToSim("done");
     }

@@ -150,5 +150,11 @@ vector<thread*> Singleton::getThreads() {
 string Singleton::getFromIndexTable(int key) {
   return this->index_table[key];
 }
+bool Singleton::getIsDone() {
+    return this->is_done;
+}
+void Singleton::setIsDone() {
+    this->is_done = true;
+}
 
 // maybe put here destructor

@@ -22,9 +22,7 @@ class ConnectControlClientCommand : public Command {
   string ip;
   int port;
 public:
-  virtual int execute(vector<string> &tokens, int curr_index);
-  void connectClient();
+    virtual int execute(vector<string> &tokens, int curr_index);
+    void connectClient(int client_socket);
 };
-
-
 #endif //EX3_CONNECTCONTROLCLIENTCOMMAND_H
