@@ -48,8 +48,8 @@ int ConnectControlClientCommand::execute(vector<string> &tokens, int curr_index)
     this->port = Functions::shuntingYard(tokens[curr_index + 2]);
     int client_socket = socket(AF_INET, SOCK_STREAM, 0);
     if(client_socket == -1) {
-        cout << "Couldn't open client socket"<<endl;
-        throw "Error";
+      cout << "Couldn't open client socket"<<endl;
+      return -1;
     }
     sockaddr_in address;
     address.sin_family = AF_INET;
@@ -59,8 +59,9 @@ int ConnectControlClientCommand::execute(vector<string> &tokens, int curr_index)
     int is_connect = connect(client_socket, (struct sockaddr *)&address, sizeof(address));
     if (is_connect == -1) {
         cout <<"Couldn't connect to server"<<endl;
-        throw "Error";
+        return -2;
     }
+
     thread *sendData = new thread(&ConnectControlClientCommand::connectClient, this, client_socket);
     // add the thread to the threads vector that in singleton.
     singleton->setToTreads(sendData);

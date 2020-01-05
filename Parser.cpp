@@ -18,7 +18,7 @@ void Parser::parser() {
   while(index < tokens.size()) {
       comm = singleton->getfromCommandTable(tokens[index]);
       if (comm != NULL) {
-          index += comm->execute(tokens, index);
+        index += comm->execute(tokens, index);
 
       } else if (tokens[index + 1] == "="){ // for '=' case.
         index++;
