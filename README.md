@@ -37,3 +37,5 @@ Install *FlightGear* from the app store (software center) provided by Ubuntu.
     ./a.out fly.txt
 ```
 5. Open Flight Gear game (which was downloaded before) and click *Fly!*
+
+[Git Link](https://github.com/batelpir/SimProject)
