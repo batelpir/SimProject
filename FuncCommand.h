@@ -5,7 +5,7 @@
 #ifndef EX3__FUNCCOMMAND_H_
 #define EX3__FUNCCOMMAND_H_
 #include "Functions.h"
-#import "SeparateScopeComm.h"
+#include "SeparateScopeComm.h"
 /*
  * the command which run a function.
  * is inherit Command because it is kind of command.

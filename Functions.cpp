@@ -78,7 +78,9 @@ void Functions:: splitLine(vector<string> *tokens, string line, int delim_pos) {
             // take all the expression in brackets
             regex patt("[\\s]*\\((.*?)\\)");
             if (std::regex_search(line, match, patt)) {
-                tokens->push_back(match.str(1));
+                //remove trailing spaces from match
+                int start = match.str(1).find_first_not_of(" \t");
+                tokens->push_back(match.str(1).substr(start));
             }
         }
     }
@@ -118,8 +120,8 @@ vector<string> Functions::lexer(string file_name) {
     } else {
         helper(file_obj, &tokens, line);
     }
-
   } // end of while - reading line by line from file
+
 
   /*
   for (int j = 0; j < tokens.size(); j++) {

@@ -16,14 +16,10 @@ int main(int argc, char *argv[]) {
     Singleton* singleton = Singleton::getInstance();
 
     if  (argc == 2) {
-        //tokens = Functions::lexer(argv[1]);
+        tokens = Functions::lexer(argv[1]);
     } else {
         cout << "File name is not supplied\n";
     }
-    // use parser with try & catch!!!
-
-    tokens = Functions::lexer("flyCopy.txt");
-
     Parser *parser = new Parser(tokens);
     parser->parser();
     vector<thread*> threads = singleton->getThreads();
